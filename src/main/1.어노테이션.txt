@@ -58,11 +58,16 @@
 
     4. * 동적처리 * : 실행 중 에 어노테이션 기능들이 주입 된다.
     5. 리플렉션된 클래스/인스턴스 정보 확인
+        (1)
         try {
             Method method = 확인할클래스명.class.getMethod("확인할메소드");
             확인할어노테이션명 변수명 = method.getAnnotation( 확인할어노테이션명.class);
             System.out.println( 변수명.확인할메소드명() );
         } catch (Exception e) {  System.out.println(e);  }
+        (2)
+        확인할어노테이션명 변수명  = 확인할클래스명.class.getAnnotation( 확인할어노테이션명.class );
+        System.out.println( 변수명.확인할메소드명() );
+        System.out.println( 변수명.확인할메소드명() );
 
 
 
