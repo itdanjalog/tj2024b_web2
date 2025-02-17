@@ -1,5 +1,11 @@
 package example.day01._1어노테이션;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 
 class SuperClass { // 상위 클래스 // 부모
@@ -19,6 +25,8 @@ class SubClass extends SuperClass {  // 하위 클래스 // 자식 // extends �
 } // c end
 
 // [1] 어노테이션 만들기
+@Retention( RetentionPolicy.RUNTIME ) // 런타임까지 유지 한다는 뜻
+@Target( ElementType.METHOD ) // 해당 어노테이션은 메소드에만 적용 한다는 뜻
 @interface Annotation1{
     // 추상메소드
     String value1();
@@ -26,7 +34,7 @@ class SubClass extends SuperClass {  // 하위 클래스 // 자식 // extends �
 
 // [2] 어노테이션 사용하기
 class TestClass{
-    @Annotation1( value1="value1 값 저장" ) // 실행중에 주입
+    @Annotation1( value1="어노테이션에 값 주입" ) // 실행중에 주입
     public void method3(){
         // value1 이라는 값을 사용할 수 있다( 내부적으로 )
         // System.out.println( value1 ); // sout
@@ -35,16 +43,18 @@ class TestClass{
 
 public class Example1 {
     // main + 엔터
-    public static void main(String[] args) {
+    public static void main(String[] args){
         // * 기본 어노테이션 사용
         SubClass subClass = new SubClass();
         subClass.method1(); // 오버라이딩된 메소드
         subClass.method2(); // 비권장(더이상 사용하지않는) 메소드
 
         // [3] 리플렉션 된 클래스 정보 확인
-        Method method = TestClass.class.getMethod("method3");
-        Annotation1 annotation1 = method.getAnnotation( Annotation1.class );
-        System.out.println( annotation1.value1() );
+        try {
+            Method method = TestClass.class.getMethod("method3");
+            Annotation1 annotation = method.getAnnotation(Annotation1.class);
+            System.out.println(annotation.value1());
+        } catch (Exception e) {  System.out.println(e);  }
 
     } // f end
 } // c end
