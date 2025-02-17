@@ -1,0 +1,36 @@
+[ 스프링 과제1 ]
+day01 -> _3과제 폴더에서 진행
+주제 : 게시판 RestController 만들기
+    1. AppStart 클래스 생성    2. BoardController 클래스 생성
+    3. 각 URL 매핑 만들기
+        1. 글쓰기           POST       "/day01/task/board"
+        요청자료 : x , 응답자료 : true/false
+
+        2. 전체 글 조회      GET        "/day01/task/board"
+        요청자료 : x , 응답자료 : 임의의 List 타입 ,  [ {bno:'',btitle:''} ,  {bno:'',btitle:''}  ] , 아래 참고
+
+        3. 개별 글 조회      GET        "/day01/task/board/view"
+        요청자료 : x , 응답자료 : 임의의 MAP  타입  ,  {bno:'',btitle:''} , 아래 참고
+
+        4. 개글 글 수정      PUT        "/day01/task/board"
+        요청자료 : x , 응답자료 : true 또는 false
+
+        5. 개별 글 삭제      DELETE     "/day01/task/board"
+        요청자료 : x , 응답자료 : 임의의 삭제한 번호 , 3
+
+제출 : 카카오톡방에 ip 제출
+
+샘플 예1]
+        List<Map<String,String>> list = new ArrayList<>();
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("bno" , "1" );
+        map1.put("btitle" , "제목1");
+        list.add( map1 );
+        Map<String,String> map2 = new HashMap<>();
+        map2.put("bno" , "2" );
+        map2.put("btitle" , "제목2");
+        list.add( map2 );
+샘플 예2]
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("bno" , "1" );
+        map1.put("btitle" , "제목1");
