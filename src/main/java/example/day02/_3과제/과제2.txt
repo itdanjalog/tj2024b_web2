@@ -1,0 +1,55 @@
+[ 스프링 과제2 ]
+day02 -> _3과제 폴더에서 진행
+주제 : 게시판 RestController 만들기
+    1. AppStart 클래스 생성    2. BoardController 클래스 생성 3. BoardDto 클래스 생성(롬복 사용)
+    3. BoardController 클래스에 List<BoardDto> 멤버변수로 선언한다.
+        +bno는 list add 할때 마다 자동으로 증가하도록 설계
+    3. 각 URL 매핑 만들기 , REST 명세서
+        1. 글쓰기           POST       "/day02/task1/board"
+            요청자료 : { "title" : "" , "content" : "" }
+            응답자료 : true 또는 false
+
+        2. 전체 글 조회      GET        "/day02/task1/board"
+            요청자료 : x
+            응답자료 : [ { "bno": "" , "title" : "" , "content" : "" } ,
+                        { "bno": "" , "title" : "" , "content" : "" }  ]
+
+        3. 개별 글 조회      GET        "/day02/task1/board/view"
+            요청자료 : ?bno=1
+            응답자료 : { "bno": "" , "title" : "" , "content" : "" }
+
+        4. 개글 글 수정      PUT        "/day02/task1/board"
+            요청자료 : { "bno": "" , "title" : "" , "content" : "" }
+            응답자료 : true 또는 false
+
+        5. 개별 글 삭제      DELETE     "/day02/task1/board"
+            요청자료 : ?bno=1
+            응답자료 : true 또는 false
+
+제출 : 카카오톡방에 ip 제출
+
+
+1. 글쓰기
+    1. 저장할 데이터들을 매개변수(DTO)로 받는다.!
+    2. 리스트(DB) 에 저장한다.
+    3. 응답한다.
+
+2. 전체 글 조회
+    1. x
+    2. x                                            select  vs  for vs index()
+    3. 리스트 응답한다.
+
+3. 개별 글 조회
+    1. 조회할 번호를 받는다.
+    2. 리스트(DB)에서 조회할 번호를 찾는다.             select  vs  for vs index()
+    3. 찾은 값 응답한다.
+
+4. 개글 글 수정
+    1. 수정할 번호 와 새로운 내용들을 매개변수(DTO)로 받는다.!
+    2. 수정할 번호를 찾아서 리스트 객체를 수정한다.        update  vs .set
+    3. 결과를 응답한다.
+
+5. 개별 글 삭제
+    1. 삭제할 번호를 받는다.
+    2. 리스트(DB)에서 조회할 번호를 찾아서 삭제한다.      delete  vs .delete
+    3. 찾은 값 응답한다.
