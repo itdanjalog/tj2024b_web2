@@ -6,6 +6,6 @@ import lombok.*;
 @AllArgsConstructor@NoArgsConstructor
 public class BoardDto {
     private int bno;
-    private String btitle;
-    private String bcontent;
+    private String title;
+    private String content;
 }
