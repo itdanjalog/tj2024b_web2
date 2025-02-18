@@ -4,7 +4,7 @@ day02 -> _3과제 폴더에서 진행
     1. AppStart(과제2 이어서사용) 클래스 생성
     2. BoardController2 클래스 생성
     3. BoardDto 클래스 생성( 과제2 이어서 사용)
-    4. BoardDao 클래스 생성 , 참고:boardService9 , 싱글톤 금지 , IOC/DI 사용.
+    4. BoardDao 클래스 생성 , 참고: day14/boardService9 , 싱글톤 금지 , IOC/DI 사용.
     4. BoardDao 클래스에 List<BoardDto> 멤버변수로 선언한다.
         +bno는 list add 할때 마다 자동으로 증가하도록 설계
 
