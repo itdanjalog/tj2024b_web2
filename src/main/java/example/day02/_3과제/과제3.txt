@@ -9,24 +9,24 @@ day02 -> _3과제 폴더에서 진행
         +bno는 list add 할때 마다 자동으로 증가하도록 설계
 
     3. 각 URL 매핑 만들기 , REST 명세서
-        1. 글쓰기           POST       "/day02/task1/board"
+        1. 글쓰기           POST       "/day02/task2/board"
             요청자료 : { "title" : "" , "content" : "" }
             응답자료 : true 또는 false
 
-        2. 전체 글 조회      GET        "/day02/task1/board"
+        2. 전체 글 조회      GET        "/day02/task2/board"
             요청자료 : x
             응답자료 : [ { "bno": "" , "title" : "" , "content" : "" } ,
                         { "bno": "" , "title" : "" , "content" : "" }  ]
 
-        3. 개별 글 조회      GET        "/day02/task1/board/view"
+        3. 개별 글 조회      GET        "/day02/task2/board/view"
             요청자료 : ?bno=1
             응답자료 : { "bno": "" , "title" : "" , "content" : "" }
 
-        4. 개글 글 수정      PUT        "/day02/task1/board"
+        4. 개글 글 수정      PUT        "/day02/task2/board"
             요청자료 : { "bno": "" , "title" : "" , "content" : "" }
             응답자료 : true 또는 false
 
-        5. 개별 글 삭제      DELETE     "/day02/task1/board"
+        5. 개별 글 삭제      DELETE     "/day02/task2/board"
             요청자료 : ?bno=1
             응답자료 : true 또는 false
 
