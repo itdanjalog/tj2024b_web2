@@ -1,0 +1,12 @@
+[REST 관련 주요 어노테이션 ]
+1. @Controller
+2. @RestController
+3. @RequestMapping
+4. @PostMapping
+5. @GetMapping
+6. @PutMapping
+7. @DeleteMapping
+8. @ResponseBody
+9. @RequestParam
+10. @RequestBody
+11. @ModelAttribute
