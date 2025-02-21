@@ -1,4 +1,4 @@
-package example.day03.myc2_mybatis.model.dto;
+package example.day03.mvc2_mybatis.model.dto;
 
 import lombok.*;
 

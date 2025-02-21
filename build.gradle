@@ -34,7 +34,7 @@ dependencies {
     // [3] MYSQL JDBC 라이브러리
     runtimeOnly 'com.mysql:mysql-connector-j'
     // [4] 마이바티스 라이브러리
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 }
 
 tasks.named('test') {
