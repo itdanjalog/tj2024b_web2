@@ -9,13 +9,21 @@
     <insert id="save" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto">
         insert into user( name , age ) values( #{name} , #{age} )
     </insert>
-
     <!-- [2] select -->
-
+    <select id="findAll" resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
+        select * from user
+    </select>
     <!-- [3] select -->
-
+    <select id="find" parameterType="int"
+            resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
+        select * from user where id = #{id}
+    </select>
     <!-- [4] update -->
-
+    <update id="update" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto" >
+        update user set name = #{name} , age = #{age} where id = #{id}
+    </update>
     <!-- [5] delete -->
-
+    <delete id="delete" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto" >
+        delete from user where id = #{id}
+    </delete>
 </mapper>

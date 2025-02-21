@@ -23,27 +23,30 @@ public class MyService {
     // [2] 전체조회 로직
     public List<MyDto> findAll(){
         System.out.println("MyService.findAll");
-        return null; // 샘플
+        List<MyDto> result = myMapper.findAll();
+        return result;
     }
     // [3] 개별조회 로직
     public MyDto find( int id ){
         System.out.println("MyService.find");
         System.out.println("id = " + id);
-        return null; // 샘플
+        MyDto result = myMapper.find( id );
+        return result;
     }
     // [4] 개별수정 로직
     public int update( MyDto myDto ){
         System.out.println("MyService.update");
         System.out.println("myDto = " + myDto);
-        return 1; // 샘플
+        int result = myMapper.update( myDto );
+        return result;
     }
     // [5] 개별삭제 로직
     public int delete( int id ){
         System.out.println("MyService.delete");
         System.out.println("id = " + id);
-        return 1; // 샘플
+        int result = myMapper.delete( id );
+        return result;
     }
-
 } // c end
 
 

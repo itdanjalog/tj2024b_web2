@@ -13,7 +13,7 @@ public class MyController {
     // * 스프링 컨테이너에서 객체/인스턴스 를 주입
     @Autowired private MyService myService;
 
-    // (1) PostMapping
+    // (1) PostMapping  [POST] http://localhost:8080/day03/save  [BODY] {  "name": "유재석" , "age" : "40" }
     @PostMapping("/day03/save")
     public int save( @RequestBody MyDto myDto ){
         System.out.println("MyController.save"); // soutm 자동완성 : 메소드명 출력
@@ -23,7 +23,7 @@ public class MyController {
         return result;
     }
 
-    // (2) GetMapping
+    // (2) GetMapping [GET] http://localhost:8080/day03/findall
     @GetMapping("/day03/findall")
     public List< MyDto > findAll( ){
         System.out.println("MyController.findall");
@@ -32,7 +32,7 @@ public class MyController {
         return result;
     }
 
-    // (3) GetMapping
+    // (3) GetMapping [GET] http://localhost:8080/day03/find?id=1   [ queryString ]
     @GetMapping("/day03/find")
     public MyDto find(@RequestParam("id") int id ){
         System.out.println("MyController.find");
@@ -41,7 +41,7 @@ public class MyController {
         MyDto result = myService.find( id );
         return result;
     }
-    // (4)PutMapping
+    // (4)PutMapping [PUT] http://localhost:8080/day03/update [BODY] {  "id" : "1" , "name": "유재석2" , "age" : "402" }
     @PutMapping("/day03/update")
     public int update( @RequestBody MyDto myDto ){
         System.out.println("MyController.update");
@@ -50,7 +50,7 @@ public class MyController {
         int result = myService.update( myDto );
         return result;
     }
-    // (5) DeleteMapping
+    // (5) DeleteMapping [DELETE] http://localhost:8080/day03/delete?id=1 [queryString]
     @DeleteMapping("/day03/delete")
     public int delete( @RequestParam("id") int id ){
         System.out.println("MyController.delete");
