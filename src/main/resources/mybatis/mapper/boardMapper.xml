@@ -7,6 +7,7 @@
 
     <insert id="save" parameterType="example.day03._과제.model.dto.BoardDto">
         insert into day03board( title , content ) values( #{ title } , #{ content } );
+
     </insert>
 
     <select id="findAll" resultType="example.day03._과제.model.dto.BoardDto">
@@ -26,3 +27,4 @@
     </delete>
 
 </mapper>
+

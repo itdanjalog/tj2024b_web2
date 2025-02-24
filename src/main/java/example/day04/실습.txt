@@ -24,3 +24,54 @@ day04 패키지 실습 진행
         5. 학생 개별 삭제     DELETE          "/day04/student"
             요청자료 : ?sno=1
             응답자료 : 1 또는 0
+
+[1단계] 데이터베이스 , 테이블 생성
+create table student(
+	sno int auto_increment ,
+    name varchar(100) ,
+    kor int ,
+    math int ,
+    constraint primary key( sno )
+);
+
+[2단계] MVC 패턴의 패키지구성 , DTO 클래스 , AppStart 클래스
+    (1)
+    -controller패키지
+    -service패키지
+    -model패키지
+        - mapper패키지
+        - dto패키지
+    -AppStart클래스
+    (2) DTO 생성
+    (3) AppStart 생성
+
+[3단계] Rest 구성하기 , Controller
+    (1) HTTP 요청 URL 매핑
+    (2) HTTP 요청 ( 매개변수 = BODY / queryString ) 따른 매개변수 매핑
+    (3) HTTP 응답 ( responseBody 또는 RestController ) 매핑 과 반환타입
+
+[4단계] Service 구현 ,
+    (1) Controller 에서 빈 주입이 가능하도록 @Service 등록한다.
+    (2) Controller 에서 호출 가능한 메소드 생성
+
+[5단꼐] Mapper 구현 ,
+    (1) Service 에서 빈 주입이 가능하도록 @Mapper 등록한다.
+    (방법1)
+
+    (방법2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
