@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3> 코드 파일 경로       : C:~~~~\tj2024b_web2\src\main\resources\static\day04\index.html</h3>
+    <h3> 배포된 파일 경로     : C:~~~~\tj2024b_web2\build\resources\main\static\day04\index.html</h3>
+    <h3> 배포된 HTTP 경로     : http://localhost:8080/day04/index.html </h3>
+    <h4> day04 실습 </h4>
+    학생명 : <input type="text" class="name" /> <br/>
+    국어점수 : <input type="text" class="kor" /> <br/>
+    수학점수 : <input type="text" class="math" /> <br/>
+    <button type="button" onclick="onSave()"> 등록 </button>
+    <table>
+        <thead>
+            <tr>
+                <th> 학생명 </th> <th> 국어점수 </th>
+                <th> 수학점수 </th> <th> 비고 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> 유재석 </th> <th> 100 </th>
+                <th> 80 </th> <th> <button>삭제</button>
+                <button> 수정 </button></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- axios js : 본인 JS 보다 위 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
