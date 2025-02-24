@@ -4,7 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="example.day03._과제.model.mapper.BoardMapper">
+
     <insert id="save" parameterType="example.day03._과제.model.dto.BoardDto">
         insert into day03board( title , content ) values( #{ title } , #{ content } );
     </insert>
+
+    <select id="findAll" resultType="example.day03._과제.model.dto.BoardDto">
+        select * from day03board;
+    </select>
+
+    <select id="find" parameterType="int" resultType="example.day03._과제.model.dto.BoardDto">
+        select * from day03board where bno = #{ bno }
+    </select>
+
+    <update id="update" parameterType="example.day03._과제.model.dto.BoardDto">
+        update day03board set title = #{ title }, content = #{ content } where bno = #{ bno }
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from day03board where bno = #{ bno }
+    </delete>
+
 </mapper>
