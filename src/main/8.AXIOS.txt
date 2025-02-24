@@ -1,0 +1,37 @@
+[ AXIOS ] : 비동기 통신
+    특징
+        - *JSON 타입으로 자동 변환*
+    1. 설치 (각 환경 다르다)
+        JS(CDN) : <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        react(npm) : ~
+    2. 문법
+        axios.HTTP메소드명( '통신할HTTP주소' , {body} , {option} )
+            1. HTTP메소드명 : axios.post() , axios.get() , axios.put() , axios.delete()
+            2. 통신할HTTP주소 : 스프링환경에서는 RestController 에서 정의한 매핑 주소
+                @GetMapping("/day04/student")  ----> '/day04/student'
+            3. body : 보낼 자료/데이터 객체{}
+            4. option : HTTP header 설정
+                * 기본값은 content-type : 'application/json'
+
+    3. 관례적인 유형들
+        1. 비동기 유형1
+        ( ) = > {
+            axios.post( '' , {} , {} )
+                .then( response => { console.log( response.data) } )
+                .catch( e => { console.log( e ); }
+        }
+
+        2. 동기 유형2
+        async ( ) => {
+            await axios.post( '' , {} , {} )
+                .then( response => { console.log( response.data)} )
+                .catch( e => { console.log( e ); }
+        }
+
+        3. 동기 유형3
+        async ( ) => {
+            try{
+                const response = await axios.post( '' , {} , {} )
+                console.log( response.data );
+            }catch( e ){ console.log(e);}
+        }
