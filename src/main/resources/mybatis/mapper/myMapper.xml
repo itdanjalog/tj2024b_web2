@@ -14,8 +14,7 @@
         select * from user
     </select>
     <!-- [3] select -->
-    <select id="find" parameterType="int"
-            resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
+    <select id="find" parameterType="int" resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
         select * from user where id = #{id}
     </select>
     <!-- [4] update -->

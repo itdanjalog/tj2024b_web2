@@ -14,6 +14,7 @@
         2. 결과 매핑 : SQL 쿼리 결과를 자동으로 자바 객체로 자동 타입변환
         3. 유연성 : 복잡한 쿼리 와 제어도 가능하다.
         4. 스프링과 통합 가능하다.
+
     1. 프로젝트 MyBatis 설치
         (1) 마이바티스
         implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
@@ -41,7 +42,11 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
         3. 해당 xml 과 연동할 인터페이스명 설정
-            <mapper namespace ="매핑할인터페이스명">  </mapper>
+            <mapper namespace ="매핑할인터페이스명">
+                <SQL 마크업>
+
+                </SQL 마크업>
+            </mapper>
             - 매핑할 인터페이스명이 위치한 경로까지 포함한다.
             - (src -> main -> java)생략하고 폴더명.폴더명.폴더명.인터페이스명
 
@@ -53,11 +58,17 @@
             <delete> </delete>
 
             2. 쿼리의 매개변수 지원한다.
-                <마크업명 id="매핑할추상메소드" parameterType="매개변수타입">
+                <SQL마크업명 id="매핑할추상메소드명" parameterType="매개변수타입명" resultType="반환타입명">
                     #{ 매개변수명 }
-                </마크업명>
-                * 주의할점 : DTO에 존재하지 않는 매개변수명은 자동매핑이 불가능하다.
-                !!! DTO 필드명/멤버변수명 과 매개변수명 은 동일해야 한다.
+                </SQL마크업명>
+
+                - id : 'namespace' 매핑중인 인터페이스명 안에서 매핑할 추상메소드명
+                - parameterType : sql문에서 사용할 매개변수타입명, 추상메소드의 매개변수타입명
+                - resultType : sql 결과문에서 매핑할 반환타입명 , 추상메소드의 반환타입타입명
+                    - 생략할 경우 : 자동으로 sql 처리한 레코드 수 반환(int)
+
+
+
 
 
 
