@@ -1,0 +1,26 @@
+[ 스프링 실습 ]
+day04 패키지 실습 진행
+주제 : 학생 점수 관리 CRUD
+    1. AppStart 클래스 생성
+    2. StudentController 클래스 생성
+    3. StudentService 클래스 생성
+    4. StudentMapper 인터페이스
+    5. StudentDto 클래스 생성(롬복)
+    -> xml파일 없이 @SQL 어노테이션 이용하여 SQL 매핑 [ 임의의테이블명 생성 : students ]
+    6. 각 URL 매핑 만들기 , REST 명세서
+        1. 학생점수등록           POST       "/day04/student"
+            요청자료 : { "name" : "" , "kor" : "" , "math" : "" }
+            응답자료 : 1 또는 0
+
+        2. 학생전체조회      GET              "/day04/student"
+            요청자료 : x
+            응답자료 : [ { "sno": "" , "name" : "" , "kor" : "" , "math" : "" } ,
+                        { "sno": "" , "name" : "" , "kor" : "" , "math" : ""  }  ]
+
+        4. 학생 개별 수정      PUT            "/day04/student"
+            요청자료 : { "sno": "" , "name" : "" , "kor" : "" , "math" : "" }
+            응답자료 : 1 또는 0
+
+        5. 학생 개별 삭제     DELETE          "/day04/student"
+            요청자료 : ?sno=1
+            응답자료 : 1 또는 0
