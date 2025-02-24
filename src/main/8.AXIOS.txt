@@ -13,7 +13,7 @@
             4. option : HTTP header 설정
                 * 기본값은 content-type : 'application/json'
 
-    3. 관례적인 유형들
+    3. 관례적인 유형들 : 여러개 통신을 순차처리 할 경우에는 주로 동기화 , 여러개 통신을 동시처리 할 경우에는 주로 비동기화
         1. 비동기 유형1
         ( ) = > {
             axios.post( '' , {} , {} )

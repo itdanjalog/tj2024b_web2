@@ -1,4 +1,26 @@
 console.log("index.js open")
+
+// [4] 개별 삭제 함수
+const onDelete = async ( sno ) => {
+    // (1) 삭제할 번호 : sno
+    // (2) axios 통신
+    const response = await axios.delete( `/day04/student?sno=${ sno }` )
+    if( response.data == 1 ){ onFindAll(); } // 만약에 응답 내용이 1 이면 삭제 수정 -> 전체조회함수 실행
+} // f end
+
+// [3] 개별 수정 함수
+const onUpdate = async ( sno ) => {
+    // (1) 수정할 값 받기
+    const name = prompt('새로운 이름')
+    const kor = prompt('새로운 국어점수')
+    const math = prompt('새로운 수학점수')
+    // (2) 객체화
+    const obj = { sno , name , kor , math };
+    // (3) axios 통신 ,
+    const response = await axios.put( '/day04/student' , obj )
+    if( response.data == 1 ){ onFindAll(); } // 만약에 응답 내용이 1 이면 수정 성공 -> 전체조회함수 실행
+} // f end
+
 // [2] 전체 조회 함수
 const onFindAll = async ( ) => {
     // (동기화) await , async
@@ -12,6 +34,10 @@ const onFindAll = async ( ) => {
                             <td>${ student.name } </td>
                             <td>${ student.kor }  </td>
                             <td>${ student.math }  </td>
+                            <td>
+                                <button onclick="onUpdate(${ student.sno })"> 수정 </button>
+                                <button onclick="onDelete(${ student.sno })"> 삭제 </button>
+                            </td>
                           </tr>`
             })
         tbody.innerHTML = html;
