@@ -48,6 +48,8 @@ public class StudentController {
     public List< Map<String,Object> > findStudentScores(
             @RequestParam int minKor ,
             @RequestParam int minMath ){
+        System.out.println("StudentController.findStudentScores");
+        System.out.println("minKor = " + minKor + ", minMath = " + minMath);
         return studentService.findStudentScores( minKor , minMath);
     }
 
