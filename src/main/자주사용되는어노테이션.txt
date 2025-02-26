@@ -1,15 +1,33 @@
-0. @SpringBootApplication : Spring Boot 시작 할때 필요한 설정을 자동 처리
-1. @Controller      : HTTP 요청/응답 처리 ( 주로 HTML 반환 )
-2. @RestController  : HTTP 요청/응답 처리 ( +@ResponseBody포함 , 주로 JSON 반환 )
-3. @RequestMapping  : HTTP 요청 URL 매핑 ( 주로 공통 URL 정의 할때 클래스 위에서 사용한다. )
-4. @PostMapping     : HTTP POST 요청 매핑 ( Create , 생성 , insert )
-5. @GetMapping      : HTTP GET 요청 매핑 ( Read , 조회 , select )
-6. @PutMapping      : HTTP PUT 요청 매핑 ( Update , 수정 , update )
-7. @DeleteMapping   : HTTP DELETE 요청 매핑 ( Delete , 삭제 , delete )
-8. @ResponseBody    : HTTP 응답을 JSON 으로 자동 변환하여 응답 , RestController 포함되므로 생략가능.
-9. @RequestParam    : HTTP 요청의 queryString , form-Data  에서 기본타입+공식타입의 자바 값으로 매핑
-10. @RequestBody    : HTTP 요청의 body(본문) 'application/json' 에서 자바 객체타입의 자바 값으로 매핑
-11. @ModelAttribute : HTTP 요청 매핑의 기본 어노테이션 생략가능, queryString 에서 사용된다.
-12. @Component
-12. @Service        : Mvc2 3tire 패턴의 service(비지니스로직) 담당
-13. @Mapper         : 마이바티스 환경에서 .xml 혹은 어노테이션 의 SQL 매핑 담당
+[ AppStart ] 클래스        : 서버에 필요한 스프링 설정하고 서버를 실행하는 클래스 담당. (프로젝트당1개)
+1. @SpringBootApplication : Spring Boot 시작 할때 필요한 설정을 자동 처리
+
+[ XXXController ] 클래스 : 클라이언트와 (HTTP) 통신 담당
+1. @Controller          : HTTP 요청/응답 처리 ( 주로 HTML 반환 )  ( + @Component )
+2. @RestController      : HTTP 요청/응답 처리 ( @Controller+@ResponseBody포함 , 주로 JSON 반환 )
+3. @RequestMapping      : HTTP 요청 URL 매핑 ( 주로 공통 URL 정의 할때 클래스 위에서 사용한다. )
+4. @PostMapping         : HTTP POST 요청 매핑 ( Create , 생성 , insert )
+5. @GetMapping          : HTTP GET 요청 매핑 ( Read , 조회 , select )
+6. @PutMapping          : HTTP PUT 요청 매핑 ( Update , 수정 , update )
+7. @DeleteMapping       : HTTP DELETE 요청 매핑 ( Delete , 삭제 , delete )
+8. @ResponseBody        : HTTP 응답을 JSON 으로 자동 변환하여 응답 , RestController 포함되므로 생략가능.
+9. @RequestParam        : HTTP 요청의 queryString , form-Data  에서 기본타입+공식타입의 자바 값으로 매핑
+10. @RequestBody        : HTTP 요청의 body(본문) 'application/json' 에서 자바 객체타입의 자바 값으로 매핑
+11. @ModelAttribute     : HTTP 요청 매핑의 기본 어노테이션 생략가능, queryString 에서 사용된다.
+* @Autowired            : 스프링 컨테이너에서 관리하는 빈(인스턴스)을 자동으로 주입
+
+
+[ XXX Service ] 클래스   : 비즈니스 로직 담당( CRUD , 데이터검증, 연산 , 알고리즘 , 트랜잭션 등등 ) 수행
+1. @Service        : Mvc2 3tire 패턴의 service(비지니스로직) 담당 ( + @Component )
+* @Autowired       : 스프링 컨테이너에서 관리하는 빈(인스턴스)을 자동으로 주입
+
+[ XXX Mapper ] 인터페이스 : 데이터베이스와 연동하여 SQL 처리 담당
+1. @Mapper          : 마이바티스 환경에서 .xml 혹은 어노테이션 의 SQL 매핑 담당
+2. @Insert          : 마이바티스 환경에서 INSERT SQL 삽입
+3. @Select          : 마이바티스 환경에서 SELECT SQL 삽입
+4. @Update          : 마이바티스 환경에서 UPDATE SQL 삽입
+5. @Delete          : 마이바티스 환경에서 DELETE SQL 삽입
+6. @Options         : 마이바티스 환경에서 추가 옵션 삽입 .
+    ( + 자동 생성된 PK반환 : @Options( useGeneratedKeys = true , keyProperty = 'pk필드명' )
+
+[ 그외 ]
+1. @Component      : 스프링 컨테이너에서 관리하는 빈 으로 등록
