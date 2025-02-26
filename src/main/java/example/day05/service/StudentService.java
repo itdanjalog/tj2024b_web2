@@ -63,7 +63,7 @@ public class StudentService {
     public boolean saveAll( List< Map<String , Object>> list ){
         System.out.println("StudentService.saveAll");
         System.out.println("list = " + list);
-        return false;
+        return studentMapper.saveAll( list );
     }
 
 }
