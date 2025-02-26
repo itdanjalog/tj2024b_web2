@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController // HTTP 요청/응답 처리 ( +@ResponseBody포함 , 주로 JSON 반환 )
@@ -23,7 +24,7 @@ public class StudentController {
     }
     // [2] 전체조회
     @GetMapping("")
-    public Map<String , Object > findAll(){
+    public List< Map<String , Object > > findAll(){
         System.out.println("StudentController.findAll");
         return studentService.findAll();
     }
@@ -41,4 +42,13 @@ public class StudentController {
         System.out.println("sno = " + sno);
         return studentService.delete( sno );
     }
+
+    // [5] 특정 점수 이상 학생 조회
+    @GetMapping("/find/scores")
+    public List< Map<String,Object> > findStudentScores(
+            @RequestParam int minKor ,
+            @RequestParam int minMath ){
+        return studentService.findStudentScores( minKor , minMath);
+    }
+
 } // class end
