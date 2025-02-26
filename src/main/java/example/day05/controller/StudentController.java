@@ -53,4 +53,33 @@ public class StudentController {
         return studentService.findStudentScores( minKor , minMath);
     }
 
+    // [6] 여러명의 학생 등록하기
+    @PostMapping("/save/all")
+    // post , http://localhost:8080/day05/students/save/all
+    // body : [ { "name" : "유재석" , "kor" : "100", "math" : "90" } ,{ "name" : "유재석2" , "kor" : "50", "math" : "40" } ]
+    public boolean saveAll( @RequestBody List< Map< String,Object>> list ){
+        System.out.println("StudentController.saveAll");
+        System.out.println("list = " + list);
+        return studentService.saveAll( list );
+    }
+    /*
+        [ JS(fetch/axios) / TalendApi ] ----------- HTTP -------------------->  [JAVA]
+                ( JSON 알고있음 )                   ( JSON 알고있음 )              ( JSON 몰라 / 타입변환  )
+                body : { }                                                      DTO , MAP
+                body : [ ]                                                      List
+     */
+
+
 } // class end
+
+
+
+
+
+
+
+
+
+
+
+

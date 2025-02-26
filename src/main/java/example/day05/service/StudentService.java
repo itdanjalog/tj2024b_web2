@@ -58,6 +58,14 @@ public class StudentService {
             int minKor , int minMath ){
         return studentMapper.findStudentScores( minKor , minMath);
     }
+
+    // [6] 여러명의 학생 등록하기
+    public boolean saveAll( List< Map<String , Object>> list ){
+        System.out.println("StudentService.saveAll");
+        System.out.println("list = " + list);
+        return false;
+    }
+
 }
 
 

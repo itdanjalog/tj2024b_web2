@@ -102,18 +102,15 @@
                 2. never : schema.sql , data.sql 읽어서 실행하지 않는다. [ 운영중 ]
                 3. embedded(기본값) : [내장데이터베이스 H2=테스트목적] 실행 되고 외부 DB(MYSQL등) 실행 안된다.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    5. 동적 쿼리
+        1. 정의 : SQL 실행 시점에서 mybatis 에서 제공하는 문법이 SQL에 구성하는 방법
+        2. 사용법 : XML 에서 사용할때 동적쿼리 바로 사용, @어노테이션 에서 사용할때 SQL 앞뒤로 <script> </script>
+        3. 종류
+            1. IF
+                <if test="조건식">
+                    조건이참일때SQL문
+                </if>
+            2. FOREACH
+                <foreach collection="(리스트/배열)매개변수명" item="반복변수명" separator="반복사이문자">
+                    반복할 SQL문 , #{ 반복변수명.필드명 }
+                </foreach>
