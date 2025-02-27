@@ -37,10 +37,14 @@
                 execution( int example.day06.aop.TestService2.enter1(boolean) )
                 execution( int example.day06.aop.TestService2.enter1(boolean,int) )
             5. ( exection( 리턴타입 패키지명.클래스명.메소드명( 매개변수타입 ) ) && args(매개변수명) )
+            6. value =  * exection( 리턴타입 패키지명.클래스명.메소드명( 매개변수타입 ) ) && args(매개변수명) ) , returning = "리턴변수명"
             - args : arguments
                 @Before : 매개변수 O
                 @After : 매개변수 O
                 @AfterReturning : 리턴값 O
                 @AfterThrowing : 예외값 O
                 @Around : 매개변수 O , 리턴값 O
+
+
+
 
