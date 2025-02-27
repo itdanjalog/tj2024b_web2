@@ -9,7 +9,6 @@ import java.util.Arrays;
 @Aspect// AOP 적용
 @Component // 스프링 컨테이너에 빈 등록
 public class TaskLogging {
-
     // [*]  @Before / @AfterReturning 사용하지 않고 @Around 하나로 표현
     @Around( " execution( * example.day06._aop과제.service.TaskService.*(..) )" )
     public Object TaskServiceCheck( ProceedingJoinPoint joinPoint ) throws Throwable{
@@ -25,7 +24,6 @@ public class TaskLogging {
         // * 지정한 함수의 반환 값 그대로 반환
         return result;
     }
-
 }
 
 
