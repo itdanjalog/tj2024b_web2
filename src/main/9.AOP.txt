@@ -1,14 +1,38 @@
-[AOP] : 관점 지향 프로그래밍
-    1. 정의 : 핵심 로직 과 공통 기능 을 분리하는 프로그래밍 기법
+[AOP] : 관점 지향 프로그래밍 , Aspect-Oriented Programming
+    1. 정의 : 핵심 로직 과 공통(부가) 기능 을 분리하는 프로그래밍 기법
     2. 목적 :
         1. 여러 메소드 에서 **중복되는 코드** 들을 공통 기능으로 분리하여 필요할때 *자동*으로 실행하는 방식
         2. 핵심 로직은 깔끔하게 유지하고 공통 기능은 한곳에서 관리하여 유지보수 용이
     3. 공통 기능
         1. 로그 처리 ( 기능 실행에 있어서 기록 남기 )
         2. 트랜잭션
-        3. 보안 검사
-        등등
+        3. 보안 검사 등등
     4. 사용법
         1. 그레이들에 라이브러리 추가
             implementation 'org.springframework.boot:spring-boot-starter-aop'
+        2. 만들고자 하는 클래스 위에
+            @Aspect
+        3. 모듈 함수 위에
+            @Before             : 메소드가 실행 하기전에 실행
+                -> 매개변수검사, 로그 , 보안 등
+            @After              : 메소드가 실행 후 실행 [ 정상이든 예외든 무조건 실행 ]
+                -> 외부연결 해제 , 로그 등
+            @AfterThrowing      : 메소드가 실행 중 예외 발생시 실행
+                -> 예외로그 , 트랜잭션 롤백 등
+            @AfterReturning     : 메소드가 정상적으로 실행된 후 실행
+                -> 로그 , 캐시(기록) 등
+            @Around             : 메소드가 실행 전후를 모두 감싸서 실행
+                -> 성능평가 , 모니터링 , 트랜잭션 등등
 
+        4. @Before/@After/@AfterThrowing/@AfterReturning/@Around( ????? )
+            1. ( execution 문법 )
+            2. ( execution( 리턴타입 )
+                execution( * ) : 모든 리턴 타입을 의미
+                execution( int ) : 해당 메소드 들은 리턴타입이 int 뜻
+            3. ( exection( 리턴타입 패키지명.클래스명.메소드명 )
+                execution( * TestService2.*  ) : (경로생략)같은패키지 이면서 TestService2 클래스의 모든 메소드 적용
+                execution( * example.day06.aop.TestService2.enter1  ) : TestService2 클래스의 enter1 메소드 적용
+            4. ( exection( 리턴타입 패키지명.클래스명.메소드명( 매개변수타입 ) )
+                execution( * TestService2.*(..) ) : TestService2 클래스의 모든 메소드들(*)의 모든리턴타입(*)과 모든매개변수(..) 적용
+                execution( int example.day06.aop.TestService2.enter1(boolean) )
+                execution( int example.day06.aop.TestService2.enter1(boolean,int) )
