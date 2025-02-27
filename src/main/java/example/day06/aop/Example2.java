@@ -2,6 +2,7 @@ package example.day06.aop;
 
 
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +16,40 @@ import org.springframework.web.bind.annotation.RestController;
 @Aspect
 @Component
 class Security{
+    // [1] 
     @Before("execution( * TestService2.*(..) )")
     // 지정한 메소드가 실행되기 전에 아래 메소드가 실행 된다.
     // 지정한 메소드는 'TestService2' 클래스의 *(모든메소드) 이면서 (..)모든매개변수타입 *(모든리턴타입)
-        // 즉] 'TestService2' 모든 메소드들은 실행되기전에 'securityCheck()'메소드가 자동으로 실행된다.
+        // 즉] 'TestService2' 모든 메소드들은 실행되기전에 'securityCheck()'메소드가 *자동* 으로 실행된다.
     public void securityCheck(){
         System.out.println("메소드 실행 전(before) : (보안) [코로나] 열  체크  + 자기진단 ");
     } // f end 
+    
+    // [2] 
     @After("execution( * example.day06.aop.TestService2.enter1(..) )")
+    // 지정한 메소드가 실행 후에 아래 메소드가 실행된다.
+    // 지정한 메소드는 'TestService2' 클래스의 'enter1'(특정메소드) 이면서 (..)모든매개변수타입 , *(모든리턴타입)
+        // 즉] 'TestService2' 의 enter1 메소드가 실행된 후에 'securityCheck2()'메소드가 *자동* 으로 실행된다.
     public void securityCheck2(){
         System.out.println("메소드 실행 후(after) : 서비스 종료 ");
     }
+    
+    // [3] 
+    @Before("execution( * example.day06.aop.TestService2.enter3(..)) && args(name)")
+    // 지정한 메소드에서 name 매개변수를 가지고 와서 아래 메소드에서 사용이 가능하다.
+        // 로그처리, 보안검사 , 트랜잭션 등등 하기 위해서
+    public void securityCheck3( String name ){
+        System.out.println("메소드 실행 전(before) : " + name +"님이 코로나 검사 완료");
+    } // f end
+
+    // [4]
+    @AfterReturning(value = "execution( * example.day06.aop.TestService2.enter3(..))" ,
+                returning = "result" )
+    // 지정한 메소드가 정상적으로 실행 되었을때 result 리턴값을 가지고 와서 아래 메소드에서 사용이 가능하다.
+    public void securityCheck4( Object result ){
+        System.out.println("메소드 실행 후(after) : " + result +" 이/가 결과값  정상 ");
+    }
+
 } // class end
 
 @Service
@@ -40,6 +64,11 @@ class TestService2{
         // 부가기능 제외한 상태 //new Security().securityCheck();// [1]. 일반적인 코드 재사용 방법
         System.out.println("학원 입장"); // 비지니스
     }
+    //메소드3
+    public boolean enter3( String name ){
+        System.out.println("헬스장 입장"); // 비지니스 로직.
+        return true;
+    }
 } // class end
 
 @RestController
@@ -49,6 +78,7 @@ class TestController2{
     public void aop( ){
         testService2.enter1();
         testService2.enter2();
+        testService2.enter3("강호동");
     }
 }
 
