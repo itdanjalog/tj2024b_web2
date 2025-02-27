@@ -26,6 +26,9 @@ public class TaskLogging {
         return result;
     }
 
+}
+
+
     /*
     // [1] save,findAll 실행 전 에 , 앞에* : 모든리턴타입 , 뒤에*:모든메소드 , (..) : 모든 매개변수타입 , && args( 매개변수명 )
     @Before("execution( * example.day06._aop과제.service.TaskService.*(..) ) && args( param ) ")
@@ -64,5 +67,3 @@ public class TaskLogging {
         return result;
     }
     */
-
-}
