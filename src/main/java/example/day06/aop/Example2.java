@@ -61,7 +61,7 @@ class Security{
         // (3) 지정된 메소드가 실행했을때 걸린시간 계산
         long timeMs = endTime - startTime;
         // (4) 걸린시간 출력
-        System.out.println("enter3 메소드가 실행된 시간 : " + timeMs + " ms");
+        System.out.println("enter3 메소드 실행에 걸린 시간 : " + timeMs + " ms");
         // (5) 지정된 메소드가 리턴한 값 그대로 리턴
         return result;
     }
