@@ -72,6 +72,60 @@ const { name6 , ...rest2 } = { name6 : '서장훈' , age : 70 , phone : '010' }
 console.log( name6 ) // 서장훈 
 console.log( rest2 ) // {  age : 70 , phone : '010' }
 
+// [7] 삼항연산자 , 조건 ? 참 : 거짓 
+    // 1. 삼항연산자 
+const loginState = true;
+console.log( loginState == true ? '로그인상태' : '비로그인상태' )
+// [8] 단축 평가(연산)
+        // 조건(A) && 참(B) : 만약에 조건이 true 이면 B 반환 false 이면 A 반환 
+        // 조건(A) || 거짓(B) : 만약에 조건이 true 이면 A반환 false 이면 B 반환
+console.log( loginState && '로그인상태' ) // A가 true 이라서 B가 반환 
+const loginState2 = false;
+console.log( loginState2 && '로그인상태' ) // A가 false 이라서 A가 반환
+console.log( loginState || '비로그인상태' ) // A가 true 이라서 A가 반환
+console.log( loginState2 || '비로그인상태' ) // A가 false 이라서 B가 반환
+
+// [8] 비동기 = 통신요청 보내고 응답이 오기전에 다른 코드 처리 , 동기 = 통신요청 보내고 응답이 올때까지 대기상태
+    // 비동기
+const fun8 = ( ) => {
+    //fetch('' ).then( response => response.json() ).then( data => {} ).catch( error => {} )
+    axios.get('').then( response => {} ).catch( error => {} )
+}
+    // 동기 , async + await
+const fun9 =  async ( ) => {
+     //await fetch('').then( response => response.json() ).then( data => {} ).catch( error => {} )
+     axios.get('').then( response => {} ).catch( error => {} )
+}
+    // *동기2*
+const fun10 = async ( ) => {
+    // try{ const response = await fetch('');
+    //     const data = await response.json();
+    // }catch(error){ }
+    
+    try{const response = await axios.get('');
+        const data = response.data;
+    }catch(error){ }
+}
+
+// [9] 반복문 
+const arr9 = [ 10 , 20 , 30 , 40 , 50 ]
+    // 1. 일반 for문 
+for( let index = 0 ; index <= arr9.length-1 ; index++ ){
+    console.log( arr9[index] )
+}
+    // 2. 향상된 for문 , 
+    // 반복변수명 in 배열명 : 인덱스 순회 
+    // 반복변수명 of 배열명 : 값 순회 
+for( let index in arr9 ){ console.log( index ); }
+for( let value of arr9 ){ console.log( value ); }
+    // 3. forEach 문 , 배열명.forEach( ( 반복변수명 , 인덱스변수명 )=> {} )
+arr9.forEach( ( value , index ) => { console.log(value , index );} )
+    // 4. *map 문* : forEach함수는 return 없고 map은 return이 가능하다.
+const array10 = arr9.map( (value,index) => { console.log( value,index); return value*10; })
+console.log( array10 );
+    // 5. filter : 조건에 맞는것만 trun 할 수 있다.
+const array11 = arr9.filter( (value,index) => { return value % 4 === 0 } ) // 조건예] 4배수 이면  
+console.log( array11 )
 
 
 
