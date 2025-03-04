@@ -1,0 +1,129 @@
+[ 리액트 ] React.js / React
+    1. 정의 : 페이스북 에서 개발한 자바스크립트 라이브러리
+        -> 현재에는 react.js , vue.js 등등
+        -> 과거에는 jquery , Angular.js(구글) 등등
+
+    2. 목적 : 자바스크립트에서 지원하지않는 효율적이고 편한 UI 제공 받기 위해서
+        -> 프론트엔드 기술은 트랜드에 따른 기술 따르게 바뀐다. , 디바이스(모니터) 변화
+
+    3. 특징
+        1. 컴포넌트 기반 : 화면를 작은 단위로 나눠서(모듈화) 재사용할 수 있다.
+        2. 가상 DOM : 실제 DOM을 직접 조작하지 않고 가상 DOM을 만들고 진짜 DOM으로 성능을 최적화 한다.
+        3. 단방향데이터흐름 : 부모->자식 방향으로 구조화 한다.
+        4. 선언적 코드 : HTML을 가상으로 조작하여 , JS 형식의 코드로 표현이 가능하다.
+        5. 훅 지원 : 다양한 함수/라이브러리 지원한다.
+
+    4. REACT 버전 에 따라 문법의 차이가 크다. 현재 강의는 18.x
+
+    5. 사용처 : 웹(React) , 앱( React Native )
+
+    6. REACT [ SPA ] , Single Page Application
+        SPA :  Single Page Application , 주로 CSR
+            - HTML 1개 ( React )
+            - 클라이언트 에서 페이지 전환( 페이지 전환시 서버와 통신하지 않기 때문에 부드럽다 )
+                [ SSR ] : 서버 사이드 렌더링  VS [ CSR ] : 클라이언트 사이드 렌더링
+                    SSR : 서버가 페이지 전환/반환/생성
+                    CSR : 클라이언트가 페이지 전환/반환/생성
+            -> 장점 : 페이지 로드 속도가 따른다. 서버에 요청이 적으므로 성능 부담이 없다.
+            -> 단점 : 최초 페이지 로드가 느리다. 검색 최적화(SEO)에 불리하다.( 검색 : 데이터가 실시간 변화 )
+                -> 단점 보완하고자. next.js(CSR) 같은 기술을 할용하여 문제 해결 가능하다.
+
+        MPA :  Multi page Application , 주로 SSR
+            - HTML 여러개 ( JSP )
+            - 서버 에서 페이지 전환 ( 페이지 전환시 서버와 통신하므로 재로드 된다. )
+
+    -> 쇼핑몰에서 부드러운 화면 제공 했을때 눈의 피로도가 적었다. 그래서 구매율 올랐다.
+
+[ 설치 ]
+    1. node.js 설치
+        -> node.js가 나오기전에는 자바스크립트는 HTML에 종속되어 html브라우저 없이 실행할 수 없었다.
+        -> node.js : 크롬(브라우저) 엔진을 사용하므로 html에 종속되지 않고 자체적인 자바스크립트 실행할 수 있다.
+        NODE.JS : 웹 브라우저 밖에서 자바스크립트 코드를 실행 가능한 엔진
+        (1)  https://nodejs.org/ko , 현재 강의 기준 : v22.14.01 LTS. Node.js
+        (2)  'node-v22.14.0-x64.msi' 실행
+        (3)  [next] -> (I accpt)체크 [next] -> (기본폴더) [next] -> [next] -> [next] -> [install]
+        -- 설치 확인
+            1. cmd(명령프롬프트)
+            2. 아래와 같이 입력후 엔터해서 출력 결과 확인한다.
+                node -v 입력후 엔터 : 출력 예] v22.14.0     *버전 20이상이면 상관없음
+                npm -v 입력후 엔터 :  출력 예] 10.8.2       *버전 8이상이면 상관없음
+                npx -v 입력후 엔터 :  출력 예] 10.8.2       *버전 8이상이면 상관없음
+
+    2. REACT 설치
+        - react 설치할 폴더 : spring프로젝트명 -> src -> main 폴더내 설치하기
+        1. src->main 폴더 오른쪽클릭 -> [통합 터미널 열기] 클릭
+
+        2. 'npm create vite@latest 프로젝트명 --template react'
+            -> npm create vite@latest reactapp --template react
+            -> Ok to proceed? (y)     * y 입력후 엔터
+            -> ◆  Select a framework:   * 키보트 방향키를 이용하여 아래로 내려가서 'React' 에서 엔터
+               │  ● Vanilla
+               │  ○ Vue
+               │  ○ React
+               │  ○ Preact
+               │  ○ Lit
+               │  ○ Svelte
+               │  ○ Solid
+               │  ○ Qwik
+               │  ○ Angular
+               │  ○ Others
+           -> ◆  Select a variant:      * 키보드 방향키로 이용하여 아래로 내려가서 'JavaScript + SWC' 에서 엔터
+              │  ● TypeScript
+              │  ○ TypeScript + SWC
+              │  ○ JavaScript
+              │  ○ JavaScript + SWC
+              │  ○ React Router v7 ↗
+           -> Done. Now run:            * 정상적인 리액트 설치 완료
+
+        3. 리액트 실행하기
+            (1) 리액트프로젝트 폴더명으로 이동하기
+                방법1 : cd 폴더명            , 하위폴더이동 : cd 이동할폴더명 , 상위폴더이동 : cd..
+                방법2 : 해당 폴더명(reactapp) 오른쪽클릭 ->  [통합 터미널 열기] 클릭
+
+            (2) 패키지(라이브러리) 설치 또는 업데이트 , 최초로 1번 생성/gitClone 또는 추가된 라이브러리 있을경우 ,
+                npm install
+
+            (3) 리액트 실행 , 리액트서버의 기존 port : 5173
+                npm run dev
+
+            (*) 리액트 종료
+                방법1 : 터미널 에서 ctrl+c 입력하면 [종료]
+                방법2 : 터미널 자체 종료한다.( vscode 끄기 )
+
+    * npm 이란 
+        - node package manager : node.js 기반의 라이브러리(패키지)를 설치/관리 해주는 프로그램 vs 그레이들
+        -> node.js 기반 외부 라이브러리 찾기 : https://www.npmjs.com
+        1. npm install : package.json내 정의된 라이브러리들을 설치/재로드 
+        2. npm run dev : 리액트 실행 
+        3. npm i XXXX : 외부 라이브러리들을 프로젝트에 설치 
+
+
+    3. 리액트 폴더(패키지) 구성 
+        /리액트프로젝트명( reactapp )
+            -> node_modules     : 현재 프로젝트 설치된 라이브러리 ( 자동 생성 / git 업로드하지않는다. )
+            -> public           : 주로 정적파일
+            -> src              : 주로 코드 파일 
+                -> components   : 재사용 가능한 컴포넌트 모음 
+                -> pages        : 개별 페이지 컴포넌트 모음
+                -> assets       : 주로 이미지,폰트,css 등 (정적 리소스 )
+                -> index.css    : 기본 스타일 
+                -> App.jsx      : 최상위 컴포넌트
+                -> *main.jsx    : 최상위 컴포넌트를 index.html에 렌더링하는 파일 
+
+            -> index.html       : react(SPA:싱글페이지=HTML1개) , 리액트는 HTML 1개만 사용한다 root파일
+            -> package.json     : 현재 프로젝트의 설정과 라이브러리 의존성 들어있는 파일(중요!!)
+
+    4. 기본 작동 원리
+        1. index.html 에 <div id="root"></div>
+        2. main.jsx 에서 'root' 라는 id 갖는 곳에 렌더링(화면 번역) 한다.
+            JSX 문법 ---> HTML 문법 변환 ,, 왜? 브라우저는 JSX 모른다.
+        3. render( JSX형식컴포넌트 ) : 지정한 JSX컴포넌트를 HTML로 변환해서 ROOT 에 대입한다.
+            .innerHTML : 지정한 위치에 HTML문자열 대입 , 브라우저는 HTML문자열을 해석 가능하다.
+            .render( JSX컴포넌트 ) : 지정한 위치에 JSX컴포넌트 대입  , 브라우저는 JSX컴포넌트 해석 불가능하다.(렌더링 필요)
+            
+
+
+
+
+
+

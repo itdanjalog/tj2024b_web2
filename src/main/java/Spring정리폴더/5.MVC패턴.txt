@@ -1,0 +1,57 @@
+[ MVC 패턴 ]
+    1. 정의 : 소프트웨어 공학에서 사용하는 디자인 패턴 중 하나
+    2. 목적 : 프로그램을 깔끔하고 효율적으로 만들기 위해 사용되는 설계 방법
+    3. MVC 패턴 종류
+        MVC1    : controller(제어) + view(화면)
+            -> JSP 파일에서 화면(HTML) 과 제어(로직) 한번에 작성하는 방법
+            -> 장점 : 빠른개발 가능하지만 유지보수 와 역할분담 어렵다. ( 과거 주로 사용됨 )
+            view/controller <--모델(DTO)--> DAO
+
+        MVC2    : controller(Servlet) 과 view(화면) 분리
+            -> JSP 파일에서는 단순(HTML) 화면 구현 , Servlet 에서 제어(로직) 작성 하는 방법
+            -> 장점 : 로직 과 화면 분리 , 파일의 수 많아진다. ( node.js 출시 2010년이후 )
+            -> 강의에서는 console/JSP 프로젝트는 MVC2 설명
+            view( jsp/JS ) <--모델(DTO)--> controller(servlet) <--모델(DTO)--> DAO
+
+        MVC2 3Tire : controller 를 controller 와 service 분리
+            -> controller 의 역할을 조금더 세분화 해서 분리 ( Spring 프레임워크 사용 / 대규모 프로젝트 )
+            -> 장점 : 확장성이 뛰어나고 유지보수 용히다 , 파일관리 복잡도 상승
+            -> 강의에서는 spring 프로젝트 MVC2 3Tire 설명
+            view( jsp[스프링지원x] / thymeleaf / Mustache[스프링공식템플릿] / react(트렌드) )
+                +
+            controller( spring @RestController / @Controller ) + 클라이언트와 (HTTP) 통신 담당
+                +
+            service ( spring @Service )                        + 비즈니스 로직 담당( CRUD , 데이터검증, 연산 , 알고리즘 , 트랜잭션 등등 ) 수행
+                +
+            Dao/Repository( srping @Repository )               + 데이터베이스와 연동하여 SQL 처리 담당
+
+    4. 스프링 프레임워크 에서 공식적인 MVC 패턴 지원
+        1. view : 프로젝트내 src -> main -> resources 폴더내 모든 파일들을 자동으로 view 인식
+            resources 폴더
+                -> static 폴더 : 스프링은 정적 파일들을 자동으로 static 폴더 에서 찾는다.
+                    HTML / CSS / JS / 이미지 등등
+                -> templates 폴더 : 스프링은 동적 파일들을 자동으로 templates 폴더 에서 찾아 렌더링( html 반환 )
+                    JSP / thymeleaf / Mustache / react.js / vue.js 등록
+        2. Controller : 스프링은 시작과 동시에 @RestController 와 @Controller 주입된 클래스들을 스캔(찾아서) 컨테이너 등록
+        3. Service : 스프링은 시작과 동시에 @Service 주입된 클래스들을 스캔(찾아서) 컨테이너 등록
+        4. Dao/Repository : 스프링은 시작과 동시에 @Repository 주입된 클래스들을 스캔(찾아서) 컨테이너 등록
+
+    5. 패키지 구조
+        프로젝트명
+        -> src
+            -> main
+                -> java
+                    -> 패키지명(무조건1개이상) / 주로 홈페이지명 , 관례 : https://www.tjoeun.com/ -> com.tjoeun
+                        -> AppStart 클래스 : 클래스명은 아무거나 하되 , 관례 : AppStart 클래스명 사용한다.
+                        -> service 패키지
+                        -> model 패키지
+                            -> dao 패키지
+                            -> vo 패키지 ( value object : 수정불가능한 객체 )
+                            -> entity 패키지 ( DB 매핑 객체 )
+                            -> repository/DAO  패키지 ( DB 매핑 인터페이스 )
+                        -> controller 패키지
+                        -> config 패키지
+
+* 실무/대기업 : 프로젝트 복잡도 높다.
+    ( 코드 의지 뿜뿜 : 신입 [ 파견 SI ] , 공공기관/대기업 )
+    ( 코드 천천히,단계적 : 중소(스타트업) , 트랜드 )
