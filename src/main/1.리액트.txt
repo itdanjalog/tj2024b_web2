@@ -49,6 +49,54 @@
                 npm -v 입력후 엔터 :  출력 예] 10.8.2       *버전 8이상이면 상관없음
                 npx -v 입력후 엔터 :  출력 예] 10.8.2       *버전 8이상이면 상관없음
 
+    2. REACT 설치
+        - react 설치할 폴더 : spring프로젝트명 -> src -> main 폴더내 설치하기
+        1. src->main 폴더 오른쪽클릭 -> [통합 터미널 열기] 클릭
+
+        2. 'npm create vite@latest 프로젝트명 --template react'
+            -> npm create vite@latest reactapp --template react
+            -> Ok to proceed? (y)     * y 입력후 엔터
+            -> ◆  Select a framework:   * 키보트 방향키를 이용하여 아래로 내려가서 'React' 에서 엔터
+               │  ● Vanilla
+               │  ○ Vue
+               │  ○ React
+               │  ○ Preact
+               │  ○ Lit
+               │  ○ Svelte
+               │  ○ Solid
+               │  ○ Qwik
+               │  ○ Angular
+               │  ○ Others
+           -> ◆  Select a variant:      * 키보드 방향키로 이용하여 아래로 내려가서 'JavaScript + SWC' 에서 엔터
+              │  ● TypeScript
+              │  ○ TypeScript + SWC
+              │  ○ JavaScript
+              │  ○ JavaScript + SWC
+              │  ○ React Router v7 ↗
+           -> Done. Now run:            * 정상적인 리액트 설치 완료
+
+        3. 리액트 실행하기
+            (1) 리액트프로젝트 폴더명으로 이동하기
+                방법1 : cd 폴더명            , 하위폴더이동 : cd 이동할폴더명 , 상위폴더이동 : cd..
+                방법2 : 해당 폴더명(reactapp) 오른쪽클릭 ->  [통합 터미널 열기] 클릭
+
+            (2) 패키지(라이브러리) 설치 또는 업데이트 , 최초로 1번 생성/gitClone 또는 추가된 라이브러리 있을경우 ,
+                npm install
+
+            (3) 리액트 실행 , 리액트서버의 기존 port : 5173
+                npm run dev
+
+    * npm 이란 
+        - node package manager : node.js 기반의 라이브러리(패키지)를 설치/관리 해주는 프로그램 vs 그레이들
+        -> node.js 기반 외부 라이브러리 찾기 : https://www.npmjs.com
+        1. npm install : package.json내 정의된 라이브러리들을 설치/재로드 
+        2. npm run dev : 리액트 실행 
+        3. npm i XXXX : 외부 라이브러리들을 프로젝트에 설치 
+
+
+
+
+
 
 
 
