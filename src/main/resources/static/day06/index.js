@@ -63,6 +63,7 @@ const user = { name5 : '신동엽' , age5 : 50 }
 const { name5 , age5 } = user;  // 객체내 동일한 속성명으로 변수를 여러개 분해 해서 저장할 수 있다.
 console.log( name5 )
 console.log( age5 )
+
 // [6] 비구조화 할당과 나머지 연산자 , 배열 또는 객체 뒤에 ...이용하여 나머지는 객체 또는 배열로 저장하는 방법 
 const [ arr6, ...rest ] = [ 1 , 2, 3, 4 ]
 console.log( arr6 ) // 1 
