@@ -19,7 +19,12 @@ import Component1 from './example/1_동작구조/Component1.jsx'
 
 // day01 : 여러 컴포넌트 만들기 
 import Component2 from './example/1_동작구조/Component2.jsx'
-root.render( <Component2 /> )
+//root.render( <Component2 /> )
+
+// day02 : 컴포넌트의 JSX 활용 
+import Example1 from './example/2_컴포넌트/Example1.jsx'
+root.render( <Example1 /> )
+
 
 
 
