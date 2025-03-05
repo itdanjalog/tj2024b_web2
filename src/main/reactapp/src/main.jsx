@@ -23,8 +23,11 @@ import Component2 from './example/1_동작구조/Component2.jsx'
 
 // day02 : 컴포넌트의 JSX 활용 
 import Example1 from './example/2_컴포넌트/Example1.jsx'
-root.render( <Example1 /> )
+// root.render( <Example1 /> )
 
+// day02 : 컴포넌트의 Props 활용 
+import Example2 from './example/2_컴포넌트/Example2.jsx'
+root.render( <Example2 /> )
 
 
 
