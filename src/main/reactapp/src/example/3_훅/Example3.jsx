@@ -19,7 +19,7 @@ export default function Example3( props ){
     }
     // (3) 리액트 방법2
     const [ image , setImage ] = useState('짱구1.jpg') // 이미지를 저장하는 state변수 선언 
-    // 임의의 이미지를 2개이상 다운로드 받아서 리액트폴더내 public에 저장
+    // 임의의 이미지를 2개이상 다운로드 받아서 리액트폴더내 public에 저장 , localhost:1537/(public)
 
     const 변경함수3 = ( ) => {
         // state변수의 값이 변경되면 자동으로 새로고침/렌더링/컴포넌트재호출/함수재호출/함수다시return => 리액트 UI업데이트

@@ -26,12 +26,12 @@ const root = createRoot( document.querySelector('#root') )
 // root.render( <Example1 /> )
 
 // day02 : 컴포넌트의 Props 활용 
-//import Example2 from './example/2_컴포넌트/Example2.jsx'
-//root.render( <Example2 /> )
+// import Example2 from './example/2_컴포넌트/Example2.jsx'
+// root.render( <Example2 /> )
 
 // day02 : 실습1
-//import Task from './example/2_컴포넌트/Task.jsx'
-//root.render( <Task /> )
+// import Task from './example/2_컴포넌트/Task.jsx'
+// root.render( <Task /> )
 
 // day03 : 생명주기1
 // import Example1 from './example/3_훅/Example1.jsx'
@@ -42,10 +42,8 @@ const root = createRoot( document.querySelector('#root') )
 // root.render( <Example2/> )
 
 // day03 : 생명주기3
-import Example3 from './example/3_훅/Example3.jsx'
-root.render( <Example3 /> )
+// import Example3 from './example/3_훅/Example3.jsx'
+// root.render( <Example3 /> )
 
-
-
-
-
+import Task1 from './example/3_훅/Task1.jsx'
+root.render( <Task1 /> )
