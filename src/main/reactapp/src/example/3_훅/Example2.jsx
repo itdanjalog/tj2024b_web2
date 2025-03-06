@@ -36,7 +36,7 @@ export default function Example2( props ){
             // setCount( count );
         setCount( count + 1 ); // count가 const 일때 count + 1 가능 , count++(count = count + 1) 불가능
     }
-
+    
     // 컴포넌트(함수) : 한번 return 된 JSX문법의 결과(HTML) 불변성이다.
     return(<>
             <div>
