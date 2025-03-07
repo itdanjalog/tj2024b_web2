@@ -40,7 +40,7 @@
 
                     2. path 방식 : URL/value/value , 주로 1/2개 데이터를 보낼때 사용된다.
                         1. 가상경로 정의 : <Route path="/proudct/:key1/:key2" element = { <컴포넌트 /> } ></Route>
-                        2. 호출 : <Link to="/product/value1/value2" > 제품상세 </Link>
+                        2. 호출 : <Link to="/URL/value1/value2" > 제품상세 </Link>
                         3. 해당 컴포넌트 
                             1. import { useParams } from 'react-router-dom';
                             2. const { key1 , key2 } = useParams();

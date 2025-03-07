@@ -51,7 +51,7 @@ export default function App( props ){
                 <Route path="/"  element = { <Home /> } />       { /* localhost:5137 요청하면 home 컴포넌트가 열린다. */}
                 <Route path="/about" element = { <About /> } />   { /* localhost:5137/abuot 요청하면 About 컴포넌트가 열린다. */ }
                 <Route path="/mypage" element = { <MyPage /> } ></Route>
-                <Route path="/proudct/:name/:price" element = { <Product /> } ></Route>
+                <Route path="/product/:name/:price" element = { <Product /> } ></Route>
             </Routes>
         </BrowserRouter>
     </>)
