@@ -1,5 +1,5 @@
 
-import { BrowserRouter , Routes , Route , Link } from 'react-router-dom';
+import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
 function Home( props ){ return(<> 메인페이지 </>) }
 function About( props ){ return(<> 소개페이지 </>) }
 
@@ -35,12 +35,32 @@ function Product( props ){
         <p> 가격 : { price || '정보 없음 '}</p>
     </>)
 }
+function Page404(){ // HTTP의 404 오류는 '경로가 존재하지 않다.'  
+
+    // (1) 기존방식 : location.href = '이동할경로' 
+    const onHome1 = ( ) => { location.href='/' }
+    
+    // (2) 리액트 라우트방식 : 
+        // 1. import {  useNavigate } from 'react-router-dom';
+        // 2. const navigate = useNavigate();
+        // 3. navigate('이동할경로')
+    const navigate = useNavigate();
+    const onHome2 = ( ) => { navigate('/') }
+
+    return (<> 
+        <h3> 존재하지 않는 페이지 입니다. </h3> 
+        <button onClick={ onHome1 } > 홈으로1 </button>
+        <button onClick={ onHome2 } > 홈으로2 </button>
+        <a href="/"> 홈으로3 </a>
+        <Link to="/"> 홈으로3 </Link>
+    </>)
+}
 
 // 전체를 연결하는 컴포넌트 = 라우터 컴포넌트 
 export default function App( props ){
     return (<>
         <BrowserRouter>
-            <ul>
+            <ul> 
                 <a href="/"> 메인페이지(HOME / get 방식 ) </a> 
                 <Link to="/"> 메인페이지(HOME / 라우터 방식 ) </Link>
                 <Link to="/about"> 소개페이지(About) </Link>
@@ -52,6 +72,9 @@ export default function App( props ){
                 <Route path="/about" element = { <About /> } />   { /* localhost:5137/abuot 요청하면 About 컴포넌트가 열린다. */ }
                 <Route path="/mypage" element = { <MyPage /> } ></Route>
                 <Route path="/product/:name/:price" element = { <Product /> } ></Route>
+
+                 {/* 만약에 존재하지않는 가상URL 요청하면 Page404 컴포넌트가 열린다.  */}
+                <Route path="*" element = { <Page404 /> }> </Route> 
             </Routes>
         </BrowserRouter>
     </>)

@@ -40,8 +40,23 @@
 
                     2. path 방식 : URL/value/value , 주로 1/2개 데이터를 보낼때 사용된다.
                         1. 가상경로 정의 : <Route path="/proudct/:key1/:key2" element = { <컴포넌트 /> } ></Route>
-                        2. 호출 : <Link to="/URL/value1/value2" > 제품상세 </Link>
+                        2. 호출 : <Link to="URL/value1/value2" >  </Link>
                         3. 해당 컴포넌트 
                             1. import { useParams } from 'react-router-dom';
                             2. const { key1 , key2 } = useParams();
-                        
+            
+            7. 가상 URL 에 정의하지 않은 URL를 특정 컴포넌트로 라우팅 하기 , 주로 404페이지 만들기
+                1. <Route path="*" element = { <Page404 /> }> </Route> 
+
+            8. URL 호출 방법 
+                [1] JSX 문법에서는 
+                    HTML 에서는 <a href="이동할URL" > <a>               차이점 : 새로고침 적용됨. (MPA)
+                    react JSX 에서는 <Link to="이동할URL" >  </Link>    (SPA)
+                [2] JS 문법에서는 
+                    JS 에서는 location.href='이동할URL'                 차이점 : 새로고침 적용됨. (MPA)
+                    react JS 에서는 navigate('이동할URL')               (SPA)
+
+                * navigete 사용법 
+                    1. import {  useNavigate } from 'react-router-dom';
+                    2. const navigate = useNavigate();
+                    3. navigate('이동할경로')
