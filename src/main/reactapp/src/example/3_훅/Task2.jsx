@@ -12,7 +12,7 @@ import { useState } from "react"
     export default function 컴포넌트명(){ 
       return (<></>)
     }
-  [3] max.jsx 에서 생성한 컴포넌트 렌더링 
+  [3] main.jsx 에서 생성한 컴포넌트 렌더링 
   [4] 입력 상자의 state 변수 , document.querySelector() 방식이 아닌.
     (1) 선언 방법 : const [ 변수명 , set변수명 ] = useState( 초기값 )
       -> 초기값 : 다양한 자료의 모든 타입 가능하다. 
