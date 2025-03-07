@@ -26,3 +26,22 @@
             5. <a> 대신 에 <Link > 컴포넌트 이용한 이동 이벤트 
                 - 일반방식 <a href="이동할경로"> </a> : HTTP GET방식 적용되므로 우선순위가 라우터가 아닌 REST 적용된다.
                 - 라우터방식 <Link to="(가상)이동할경로"> </Link> : HTTP GET방식 아닌 리액트라우터가 적용된다.
+
+            6. 라우터를 이용한 컴포넌트에게 매개변수 전달 
+                - 일반방식 <a href="이동할경로?변수명=값&변수명=값"> </a>       : 쿼리스트링 방식 
+                - 라우터방식 
+                    1. queryString 방식 : URL?key=value&key=value           , 주로 여러개 데이터를 보낼때 사용된다.
+                        1. 가상경로 정의 : <Route path="/URL" element = { <컴포넌트 /> } ></Route>
+                        2. 호출 : <Link to="/URL?key=value&key=value">  </Link>
+                        3. 해당 컴포넌트 
+                            1. import { useSearchParams } from 'react-router-dom';
+                            2. const [ searchParams ] = useSearchParams();
+                            3. const 변수명 = searchParams.get('key');
+
+                    2. path 방식 : URL/value/value , 주로 1/2개 데이터를 보낼때 사용된다.
+                        1. 가상경로 정의 : <Route path="/proudct/:key1/:key2" element = { <컴포넌트 /> } ></Route>
+                        2. 호출 : <Link to="/product/value1/value2" > 제품상세 </Link>
+                        3. 해당 컴포넌트 
+                            1. import { useParams } from 'react-router-dom';
+                            2. const { key1 , key2 } = useParams();
+                        
