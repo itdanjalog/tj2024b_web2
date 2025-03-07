@@ -1,0 +1,28 @@
+    [리액트 라우터]
+        - 리액트는 SPA(싱글페이지애플리케이션 = HTML1개 = HTML 전환 X )
+            -> 컴포넌트 전환/변경 지원한다. --> React Router 
+        - 리액트는 폴더내 index.html 이라는 html 1개 존재 : HTTP URL 1개 이다. localhost:1537 
+            -> 컴포넌트의 HTTP 가상 URL 만들고 가상URL 요청하므로써 컴포넌트 전환/변경 지원한다.  --> React Router 
+        
+        1. 정의 : 싱글 페이지 애플리케이션(SPA) 방식에서 화면 이동 시 새로고침 없이 컴포넌트 변경 지원 
+        2. 설치 : npm( node.js 제공하는 외부 라이브러리 설치/관리 프로그램 <---> 그레이들과 비슷 )
+            (서버 꺼져있는 상태) 리액트 프로젝트 터미널 'npm i react-router-dom' 입력한다.
+            설치후 서버 재실행 
+        3. 사용법 
+            1. 모든 컴포넌트 연결 할수 있는 (라우터)컴포넌트 필요하다. 
+
+                                ------->  A컴포넌트
+                (라우터)컴포넌트 ------->  B컴포넌트 
+                                ------->  C컴포넌트 
+            2. 라우터 관련 컴포넌트 import 
+                import { BrowserRouter , Routes , Route , Link } from 'react-router-dom';
+
+            3. 연결할 컴포넌트들을 <BrowserRouter> 로 감싼다.
+
+            4. 연결할 각 컴포넌트들의 가상 URL 정의한다. 
+                <Routes>
+                    <Route path="가상URL"  element = { 연결할컴포넌트 } />
+                </Routes>
+            5. <a> 대신 에 <Link > 컴포넌트 이용한 이동 이벤트 
+                - 일반방식 <a href="이동할경로"> </a> : HTTP GET방식 적용되므로 우선순위가 라우터가 아닌 REST 적용된다.
+                - 라우터방식 <Link to="(가상)이동할경로"> </Link> : HTTP GET방식 아닌 리액트라우터가 적용된다.
