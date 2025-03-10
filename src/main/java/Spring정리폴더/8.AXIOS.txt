@@ -1,18 +1,24 @@
 [ AXIOS ] : 비동기 통신
-    - 대표적인 비동기/동기 통신 함수 : fetch(JS내장함수) vs axios vs ajax(Jquery)
+    - 대표적인 비동기/동기 통신 함수 : fetch(JS내장함수) vs axios(node기반함수) vs ajax(Jquery)
     - 특징 : *JSON 타입으로 자동 변환*
     1. 설치 (각 환경 다르다)
-        JS(CDN) : <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        react(npm) : ~
+        - JS(CDN) : <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        - react(npm) : npm i axios
     2. 문법
         axios.HTTP메소드명( '통신할HTTP주소' , {body} , {option} )
             1. HTTP메소드명 : axios.post() , axios.get() , axios.put() , axios.delete()
-            2. 통신할HTTP주소 : 스프링환경에서는 RestController 에서 정의한 매핑 주소
-                @GetMapping("/day04/student")  ----> '/day04/student'
+            2. 통신할HTTP주소 :
+                1.[내부서버] 스프링환경에서는 RestController 에서 정의한 매핑 주소
+                    @GetMapping("/day04/student")  ----> '/day04/student'
+                2.[외부서버] https:// ~~~
+
             3. body : 보낼 자료/데이터 객체{}
-                * post , put : body 사용    / get , delete : body 사용하지 않는다.
+                * post , put  method 가 데이터 보낼때. body 사용   * get , delete : body 사용하지 않는다.
+
             4. option : HTTP header 설정
                 * 기본값은 content-type : 'application/json'
+                1. { headers : { Content-Type : 'application/json'} }      * 기본값
+                2. { headers : { Content-Type : 'multipart/form-data'} }   * FORM 첨부파일 전송
 
     3. 관례적인 유형들 : 여러개 통신을 순차처리 할 경우에는 주로 동기화 , 여러개 통신을 동시처리 할 경우에는 주로 비동기화
         1. 비동기 유형1
