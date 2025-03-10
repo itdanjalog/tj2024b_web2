@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from 'axios'; // 
 export default function Example2( props ){
     // [1] 입력받은 데이터를 저장하는 폼 state 변수 , {writer:'' , content : '' , pwd : ''} 초기값 
@@ -19,12 +19,21 @@ export default function Example2( props ){
             if( response.data == true ){ // 만약에 등록 응답이 TRUE 이면 
                 alert('등록성공');  // 알림 
                 setFormData({ writer :'',content:'', pwd:'' }); // state 초기화
+                onFindAll(); // 등록 성공하면 자료 렌더링 
             }else{ 
                 alert('등록실패');
             }
         }catch( error ){ console.log( error ); }
     }
 
+    // [4] 서버에 저장된 방문록정보( 작성자/내용/비밀번호 여러개 ) 요청한다.
+    useEffect( () =>{ onFindAll()  } , [] ); // (1) 컴포넌트 마운트(생성) 될때 최초 1번 실행 함수 // 컴포넌트가 생성될때 딱 1번 onFindAll 함수가 실행된다.
+    const [ boards , setBoards ] = useState([]); //(2) 여러개의 방문록 가지는 state 변수 
+    const onFindAll =  async ( e ) => {
+        try{const response = await axios.get('http://localhost:8080/day07/react');
+            setBoards( response.data ); // 서버로 부터 받은 정보를 state 변수에 저장 // 재렌더링 
+        }catch(error){ console.log( error ); }
+    }
     return (<>
         <div>
             <h4> 입력 폼 </h4>
@@ -34,6 +43,23 @@ export default function Example2( props ){
                 비밀번호 : <input type="text" value={ formData.pwd } name='pwd' onChange={ formDataChange }/> <br/>
                 <button type="button" onClick={ onPost }> 등록 </button>
             </form>
+            <table>
+                <thead> <tr> <th> 번호 </th> <th> 작성자 </th> <th> 방문록내용 </th> <th> 비고 </th>  </tr></thead>
+                <tbody>
+                    {
+                        boards.map( ( board , index ) => {
+                            return ( 
+                                <tr> 
+                                    <td> { board.num }</td> 
+                                    <td> { board.writer}</td> 
+                                    <td> { board.content}</td> 
+                                    <td> 수정버튼 / 삭제버튼 </td>
+                                </tr> 
+                                )
+                        })
+                    }
+                </tbody>
+            </table>
         </div>
     </>)
 }
