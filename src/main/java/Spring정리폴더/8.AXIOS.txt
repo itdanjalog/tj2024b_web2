@@ -42,3 +42,26 @@
                 console.log( response.data );
             }catch( e ){ console.log(e);}
         }
+
+    4. CORS policy ( Cross Origin Resource Sharing 정책 )
+        1. 정의 : 브라우저에서 다른 도메인(HTTP주소)의 리소스(자료)를 요청할 때 발생하는 보안 정책
+        2. 목적 : 2009년 표준화된 보안 정책 SOP( Same-origin-policy ) , 동일한 도메인 끼리 리소스를 허용한다.
+        3. 방법
+                [문제점]
+                - JS( localhost:8080 ) --------> spring( localhost:8080 ) : 도메인 같으므로 문제 없다.
+                - react( localhost:5173 ) ------> spring( localhost:8080) : 서도 다른 도메인 이므로 문제 있다.
+                [해결방안] : 서로 다른 도메인 간의 리소스 공유 허용 , CORS 허용
+                    (1) 스프링 서버 허용 방법
+                        Controller클래스 위에 @CrossOrigin("허용할도메인주소")
+                            ->@CrossOrigin("http://localhost:5173") : 해당 클래스는 리액트 서버를 (통신) 허용한다.
+    * 도메인 이란 ?
+        http://192.168.40.25:8080   : ip:port 주소(숫자)
+        http://www.naver.com        : ip:port 주소(숫자 --> 문자 ) DNS(도메인 네임 서비스)
+            -> 우편번호(숫자) ---> 도로명 주소(문자)
+
+
+
+
+
+
+

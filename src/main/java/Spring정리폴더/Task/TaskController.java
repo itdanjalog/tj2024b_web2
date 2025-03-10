@@ -1,4 +1,4 @@
-package example.Task;
+package Spring정리폴더.Task;
 
 /*
     조과제 :
@@ -6,8 +6,6 @@ package example.Task;
     2. 최소 6개 이상 방법 찾기
 
 */
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class TaskController {
 

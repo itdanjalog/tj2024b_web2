@@ -62,6 +62,10 @@ const root = createRoot( document.querySelector('#root') )
 // import App from './example/5_라우터/Example1.jsx'
 // root.render( <App /> )
 
-// day05 : axios 
-import Example1 from './example/6_AXIOS/Example1'
-root.render( <Example1/> )
+// day05 : axios 1
+// import Example1 from './example/6_AXIOS/Example1'
+//root.render( <Example1/> )
+
+// day05 : axios 2 
+import Example2 from './example/6_AXIOS/Example2'
+root.render( <Example2/> )
