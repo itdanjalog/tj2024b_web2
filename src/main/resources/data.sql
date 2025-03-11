@@ -1,3 +1,9 @@
+
+-- ---------------------- day08 ---------------------------------- --
+insert into productsample( name , price , comment ) values ( '코카콜라' , 1000 , '맛있는 코카콜라' );
+insert into productsample( name , price , comment ) values ( '사이다' , 1700 , '제로 사이다입니다.' );
+insert into productsample( name , price , comment ) values ( '환타' , 2000 , '새로나온 환타 맛 입니다.' );
+-- ---------------------- ------ ---------------------------------- --
 -- ---------------------- day05 ---------------------------------- --
 -- 학생 테이블 샘플 데이터 삽입
 -- INSERT INTO student (name, kor, math) VALUES ('김철수', 90, 85);
