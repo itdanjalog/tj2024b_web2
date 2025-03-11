@@ -67,5 +67,9 @@ const root = createRoot( document.querySelector('#root') )
 //root.render( <Example1/> )
 
 // day05 : axios 2 
-import Example2 from './example/6_AXIOS/Example2'
-root.render( <Example2/> )
+// import Example2 from './example/6_AXIOS/Example2'
+// root.render( <Example2/> )
+
+// day06 : 라우터 컴포넌트 렌더링
+import App from './example/7_AXIOS2/App'
+root.render( <App /> )

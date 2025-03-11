@@ -1,0 +1,30 @@
+
+/* 전체 선택자 */
+*{
+    box-sizing: border-box; /* 각 구역의 사이즈를 테두리까지 한다.*/
+    margin: 0; padding: 0; /* 기본값 여백 제거 */
+}
+li{ list-style-type: none;} /* 글머리 제거 */
+/* 링크 마크업의 색상과 밑줄 제거*/
+a{ color: black; text-decoration: none;}
+
+/* 전체 구역 */
+#wrap{
+    display: flex; /* 하위 요소 가로 배치 */
+}
+#wrap > div:nth-child(1){
+    /* 형제 선택자 : 선택자 > 하위선택자:nth-child(순번) */
+    /* 만약에 하위선택자가 여러개 일때 순번으로 선택한다 */
+    /* wrap 선택자 하위에는 사이드바 div 와 본문 div */
+    /* div:nth-child(1) : 사이드바 div */
+    /* div:nth-child(2) : 사이드바 div */
+    width: 15%;
+}
+#sideMenu > li {
+    margin: 50px 20px;
+}
+
+#wrap > div:nth-child(2){
+    width: 85%;
+    margin: 50px 2px;
+}
