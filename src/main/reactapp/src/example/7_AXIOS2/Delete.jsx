@@ -1,20 +1,26 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { BarChart } from '@mui/x-charts/BarChart';
 
 export default function Delete( props ){
-    return (
-        <BarChart
-          series={[
-            { data: [35, 44, 24, 34] },
-            { data: [51, 6, 49, 30] },
-            { data: [15, 25, 30, 50] },
-            { data: [60, 50, 15, 25] },
-          ]}
-          height={290}
-          xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-          margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-        />
-      );
+    const [ deleteId , setDeleteId ] = useState('')
+    const onValueChange = ( e ) => {
+        setDeleteId( e.target.value )
     }
+
+    const navigate = useNavigate();
+    const onDelete = async ( ) => {
+        const response = await axios.delete(`http://localhost:8080/day08/products?id=${ deleteId}` )
+        if( response.data == true){ alert('삭제성공'); navigate('/read'); }
+        else{ alert('삭제성공:없는제품번호 이거나 시스템오류'); }
+    }
+
+    return(<> 
+        <div>
+            <h3>Delete 페이지</h3> 
+            <form>
+                삭제할제품번호 : <input  value={ deleteId } onChange={ onValueChange } /> <br/>
+                <button type="button" onClick={ onDelete }> 삭제 </button>
+            </form>
+        </div> </>)
+}
