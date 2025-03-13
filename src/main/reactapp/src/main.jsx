@@ -71,5 +71,12 @@ const root = createRoot( document.querySelector('#root') )
 // root.render( <Example2/> )
 
 // day06 : 라우터 컴포넌트 렌더링
-import App from './example/7_AXIOS2/App'
-root.render( <App /> )
+// import App from './example/7_AXIOS2/App'
+// root.render( <App /> )
+
+// day07 : 
+// import Example1 from './example/8_MUI/Example1'
+// root.render( <Example1 /> )
+
+import Example2 from './example/8_MUI/Example2'
+root.render( <Example2 /> )
