@@ -78,5 +78,8 @@ const root = createRoot( document.querySelector('#root') )
 // import Example1 from './example/8_MUI/Example1'
 // root.render( <Example1 /> )
 
-import Example2 from './example/8_MUI/Example2'
-root.render( <Example2 /> )
+// import Example2 from './example/8_MUI/Example2'
+// root.render( <Example2 /> )
+
+import App from './components/App.jsx'
+root.render( <App /> )

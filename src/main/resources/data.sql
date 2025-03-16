@@ -1,4 +1,11 @@
 
+INSERT INTO member (mid, mpwd, mname) VALUES
+('user1', 'password123', '김철수'),
+('user2', 'qwerty456', '이영희'),
+('user3', 'abcde789', '박민준'),
+('user4', 'helloWorld', '정다은'),
+('user5', 'son1234', '손흥민');
+
 -- ---------------------- day08 ---------------------------------- --
 insert into productsample( name , price , comment ) values ( '코카콜라' , 1000 , '맛있는 코카콜라' );
 insert into productsample( name , price , comment ) values ( '사이다' , 1700 , '제로 사이다입니다.' );
