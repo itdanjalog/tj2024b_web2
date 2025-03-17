@@ -25,7 +25,8 @@ public class MemberController {
     // Content-Type : application/json
     // body : { "mid" : "qwe" , "mpwd":"1234" , "mname":"유재석" }
     @PostMapping("/signup")
-    public boolean sigunUp( @RequestBody MemberDto memberDto  ){
+//    public boolean sigunUp( @RequestBody MemberDto memberDto  ){
+    public boolean sigunUp(  MemberDto memberDto  ){
         System.out.println("MemberController.sigunUp");
         System.out.println("memberDto = " + memberDto);
         //return false;

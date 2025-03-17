@@ -1,12 +1,18 @@
 import { useState } from "react";
 import axios from 'axios'
+import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
 
 export default function Signup( props ){
 
+    const navigate = useNavigate();
+
       // 입력값 상태 관리
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [memberInfo, setMemberInfo] = useState({
+    mid: "",
+    mpwd: "",
+    mname: ""
+  });
+
   const [profileImage, setProfileImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -14,6 +20,7 @@ export default function Signup( props ){
   const handleProfileImageChange = (e) => {
     const file = e.target.files[0];
     setProfileImage(file);
+    //setMemberInfo( { ...memberInfo , 'mimg' : file} );
     // 이미지 미리보기
     if (file) {
       const reader = new FileReader();
@@ -30,23 +37,24 @@ export default function Signup( props ){
   const onSignup = async (e) => {
     e.preventDefault();
 
+    console.log( memberInfo )
     // 파일 업로드가 포함된 데이터를 전송하려면 FormData 사용
-    const formData = new FormData();
-    formData.append("mid", email);
-    formData.append("mpwd", password); // API 필드명에 맞게 조정
-    formData.append("mname", name);
+    const formData = new FormData(  );
+    formData.append("mid", memberInfo.mid );
+    formData.append("mpwd", memberInfo.mpwd); // API 필드명에 맞게 조정
+    formData.append("mname", memberInfo.mname );
     // 프로필 이미지가 선택된 경우만 추가
     if (profileImage) {
-      formData.append("mimg", profileImage);
+      formData.append("uploadfile", profileImage);
     }
 
     // 예시: axios를 사용하여 회원가입 API 호출
     const response = await axios.post("http://localhost:8080/api/member/signup", formData, {
       headers: { "Content-Type": "multipart/form-data" }
     })
-
     if( response.data  ){
         console.log("회원가입 성공");
+        navigate("/member/login");
     }else{
         console.log("회원가입 에러");
     }
@@ -64,8 +72,9 @@ export default function Signup( props ){
           <input 
             id="email"
             type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
+            value={memberInfo.mid}
+            name ="mid"
+            onChange={(e) => setMemberInfo( { ...memberInfo , [e.target.name] : e.target.value } )}
             required 
           />
         </div>
@@ -74,8 +83,9 @@ export default function Signup( props ){
           <input 
             id="password"
             type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
+            value={memberInfo.mpwd}
+                        name ="mpwd"
+                        onChange={(e) => setMemberInfo( { ...memberInfo , [e.target.name] : e.target.value } )}
             required 
           />
         </div>
@@ -84,8 +94,9 @@ export default function Signup( props ){
           <input 
             id="name"
             type="text" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
+            value={memberInfo.mname}
+                        name ="mname"
+                        onChange={(e) => setMemberInfo( { ...memberInfo , [e.target.name] : e.target.value } )}
             required 
           />
         </div>

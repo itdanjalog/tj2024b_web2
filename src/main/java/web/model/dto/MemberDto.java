@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data // @Getter @Setter @ToString 등등 포함
 @AllArgsConstructor // 전체 생성자
@@ -17,6 +18,7 @@ public class MemberDto {
     private String mname;
     private String mimg;
     // + 그외
+    private MultipartFile uploadfile;
 
 }
 
