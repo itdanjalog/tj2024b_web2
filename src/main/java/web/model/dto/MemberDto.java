@@ -1,23 +1,36 @@
 package web.model.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-// @Data → Getter, Setter, toString() 자동 생성
-//@AllArgsConstructor → 모든 필드를 포함한 생성자 자동 생성
-//@NoArgsConstructor → 기본 생성자 자동 생성
+@Data // @Getter @Setter @ToString 등등 포함
+@AllArgsConstructor // 전체 생성자
+@NoArgsConstructor // 빈 생성자
+@Builder // 빌더패턴 지원
 public class MemberDto {
+    // + DB 테이블 필요
     private int mno;
     private String mid;
     private String mpwd;
     private String mname;
     private String mimg;
-    private MultipartFile uploadfile;
+    // + 그외
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

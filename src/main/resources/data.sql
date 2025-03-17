@@ -1,4 +1,5 @@
 
+-- ---------------------- web ---------------------------------- --
 INSERT INTO member (mid, mpwd, mname) VALUES
 ('user1', 'password123', '김철수'),
 ('user2', 'qwerty456', '이영희'),
