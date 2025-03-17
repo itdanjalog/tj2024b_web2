@@ -22,5 +22,24 @@ public class MemberService {
         System.out.println("result = " + result);
         return result;
     }
-
+    // [2] 로그인
+    public MemberDto login( MemberDto memberDto ){
+        System.out.println("MemberService.login");
+        System.out.println("memberDto = " + memberDto);
+        //return false;
+        MemberDto result = memberMapper.login(memberDto);
+        return result;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
