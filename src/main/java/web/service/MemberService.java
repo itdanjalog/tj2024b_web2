@@ -19,7 +19,8 @@ public class MemberService {
         System.out.println("MemberService.sigunUp");
         System.out.println("memberDto = " + memberDto);
         try {
-            if (memberDto.getUploadfile().isEmpty()) { // - 업로드 된 파일이 존재  하지 않으면
+            if (memberDto.getUploadfile() == null   ) { // - 업로드 된 파일이 존재  하지 않으면
+
             } else { // 존재하면
                 String uploadFileName = fileService.fileUpload(memberDto.getUploadfile());
                 // 1. 만약에 업로드가 실패 했으면  글쓰기 실패
@@ -35,7 +36,7 @@ public class MemberService {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return true;
+        return false;
     }
     // [2] 로그인
     public MemberDto login( MemberDto memberDto ){

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios'
 import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
+axios.defaults.withCredentials = true;
 
 export default function Login(props) {
 
@@ -19,11 +20,10 @@ export default function Login(props) {
     // 예를 들어, API 호출을 통해 서버에 로그인 정보를 전달할 수 있습니다.
 
       // 예시: axios를 사용하여 회원가입 API 호출
-    const response = await axios.post("http://localhost:8080/api/member/login", memberInfo )
+    const response = await axios.post("http://localhost:8080/api/member/login", memberInfo  , { withCredentials: true })
     if( response.data  ){
         console.log("로그인 성공");
-        localStorage.setItem('user', JSON.stringify(response.data));
-        navigate("/");
+        location.href="/"
     }else{
         console.log("로그인 에러");
     }

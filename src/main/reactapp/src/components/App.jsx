@@ -5,6 +5,7 @@ import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import Signup from './member/Signup';
 import Login from './member/Login';
+import Info from './member/Info';
 
 // App.jsx : 라우터(가상URL)이용한 라이팅
 export default function App( props ){ // 컴포넌트 
@@ -16,6 +17,7 @@ export default function App( props ){ // 컴포넌트
                     <Route path="/" element={ <Home /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
                     <Route path="/member/signup" element={ <Signup /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
                     <Route path="/member/login" element={ <Login /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
+                    <Route path="/member/info" element={ <Info /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
                 </Routes>
                 <Footer />
             </div>
