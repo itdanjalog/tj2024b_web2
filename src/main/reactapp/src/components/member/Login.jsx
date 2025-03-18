@@ -3,9 +3,13 @@ import axios from 'axios'
 import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
 axios.defaults.withCredentials = true;
 
+import { useDispatch } from "react-redux";
+import { login } from "../userSlice";
+
 export default function Login(props) {
 
      const navigate = useNavigate();
+     const dispatch = useDispatch();
 
   const [memberInfo, setMemberInfo] = useState({
     mid: "",
@@ -23,7 +27,8 @@ export default function Login(props) {
     const response = await axios.post("http://localhost:8080/api/member/login", memberInfo  , { withCredentials: true })
     if( response.data  ){
         console.log("로그인 성공");
-        location.href="/"
+        //location.href="/"
+        dispatch(login(response.data)); // Redux 상태 업데이트
     }else{
         console.log("로그인 에러");
     }

@@ -7,9 +7,13 @@ import Signup from './member/Signup';
 import Login from './member/Login';
 import Info from './member/Info';
 
+import { Provider } from "react-redux";  // npm install @reduxjs/toolkit react-redux
+import store from "./store";
+
 // App.jsx : 라우터(가상URL)이용한 라이팅
 export default function App( props ){ // 컴포넌트
     return (<>
+     <Provider store={store}> {/* Redux Store 적용 */}
         <BrowserRouter> { /* 모든 라우터를 감싼다. */}
             <div id ="wrap">
                 <Header />
@@ -24,5 +28,6 @@ export default function App( props ){ // 컴포넌트
 
             </div>
         </BrowserRouter>
+        </Provider>
     </>)
 }

@@ -3,10 +3,18 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
 
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../userSlice";
 
 export default function Header( props ){
 
     const [ loginInfo , setLoginInfo ] = useState({});
+
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const dispatch = useDispatch();
+
+    console.log("isAuthenticated 상태:", isAuthenticated); // 상태 확인
+
 
     useEffect( ()=>{
         myInfo();
@@ -24,8 +32,8 @@ export default function Header( props ){
         if( response ){
               console.log("dddd")
               localStorage.removeItem('user');
-              location.href="/";
-
+              //location.href="/";
+              dispatch(logout())
         }else{
              console.log("dddd2")
         }
@@ -33,6 +41,16 @@ export default function Header( props ){
     }
 
     return (<><div>
+
+            {isAuthenticated ? (
+                <>
+                    <span>환영합니다!</span>
+                    <button onClick={ onLogOut }>로그아웃</button>
+                </>
+            ) : (
+                <a href="/member/login">로그인</a>
+            )}
+
 
         {loginInfo ? (
             <div>
