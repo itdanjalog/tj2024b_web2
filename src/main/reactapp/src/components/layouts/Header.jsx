@@ -48,7 +48,7 @@ export default function Header( props ){
                     <button onClick={ onLogOut }>로그아웃</button>
                 </>
             ) : (
-                <a href="/member/login">로그인</a>
+                <Link to="/member/login">로그인</Link>
             )}
 
 
