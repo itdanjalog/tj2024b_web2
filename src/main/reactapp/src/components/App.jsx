@@ -8,7 +8,7 @@ import Login from './member/Login';
 import Info from './member/Info';
 
 // App.jsx : 라우터(가상URL)이용한 라이팅
-export default function App( props ){ // 컴포넌트 
+export default function App( props ){ // 컴포넌트
     return (<>
         <BrowserRouter> { /* 모든 라우터를 감싼다. */}
             <div id ="wrap">
@@ -19,7 +19,9 @@ export default function App( props ){ // 컴포넌트
                     <Route path="/member/login" element={ <Login /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
                     <Route path="/member/info" element={ <Info /> } /> {/* 각 가상의 URL 정의한다. 컴포넌트 연결 */}
                 </Routes>
-                <Footer />
+
+                <Footer /> { /* Routes 밖에 있는 컴포넌트들이 고정  */}
+
             </div>
         </BrowserRouter>
     </>)

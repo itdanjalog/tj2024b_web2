@@ -33,19 +33,19 @@ export default function Header( props ){
     }
 
     return (<><div>
-        
+
         {loginInfo ? (
             <div>
-                <img src={'http://localhost:8080/upload/'+loginInfo.mimg} style={ { 'width' : '50px'  } }/> 
+                <img src={'http://localhost:8080/upload/'+loginInfo.mimg} style={ { 'width' : '50px'  } }/>
                 <span>안녕하세요, {loginInfo.mid}님! </span>
                 <Link to="/member/info">마이페이지</Link>
-                <button type="button" onClick={ onLogOut }>로그아웃</button> 
+                <button type="button" onClick={ onLogOut }>로그아웃</button>
             </div>
 
         ) : (
             <h2>로그인이 필요합니다. <Link to="/member/signup" >회원가입</Link> <Link to="/member/login">로그인</Link> </h2>
         )}
 
-        
+
         </div></>)
 }
