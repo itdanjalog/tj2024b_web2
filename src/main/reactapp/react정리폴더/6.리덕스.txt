@@ -1,0 +1,59 @@
+* 서로 다른 컴포넌트간의 자료 이동하는 방법
+    1. props : properties
+        <컴포넌트 속성명={값} />
+            //1. 하위 컴포넌트에게 자료 전달 
+        <product item = { { id:1 , name : '콜라 } }
+            //2. 하위 컴포넌트에게 함수 전달 
+        <product onState = { setState }
+
+    2. localStorage/sessionStorage : 브라우저 저장소
+        - localStorage : 브라우저 꺼져도 사라지지 않는다.
+        - sessionStorage : 브라우저가 꺼지면 사라진다.
+    등등 
+
+* 컴포넌트 안에서 자료 저장하는 방법 
+    1. useState : ( 지역 상태 관리 ) 컴포넌트 내부 사용하므로 다른 컴포넌트간의 공유할때는 props 활용한다.
+
+[ 리덕스 ] Redux
+    1. 정의 : 전역 상태 관리 라이브러리, 서로 다른 컴포넌트 간의 효율적인 상태 공유 한다.
+
+    2. 목적 : state상태를 저장하는 store저장소 만들고 서로 다른 컴포넌트 간의 일관적인 state 유지한다. ( 전역변수 )
+
+    3. 활용처 : 로그인상태, 테마 , 자동로그인 등등 
+        1. 로그인후 글쓰기/제품등록 등등 할때마다 로그인상태 확인 하면 번거롭다.
+        2. 로그인후 권한에 따라 글쓰기 페이지 이동 차단 할때 로그인상태 확인 하면 번거롭다.
+
+    4. 활용목적 
+        1. 전역 상태(변수) 관리 필요할때.
+        2. 여러개의 컴포넌트에서 동일한 상태(변수) 를 공유할때 
+        3. 컴포넌트 간 props 전달이 복잡해질 때
+        등등
+
+    5. 핵심 개념 
+        1. Store( 저장소 ) : 상태들을 관리하는 중앙  , configureStore() 사용할 리듀서를 등록한다.
+        2. Slice : 상태와 리듀서를 한번에 정의하는 곳 , createSlice() 사용할 상태 또는 리듀서 만든다.
+        3. Action(액션) : 상태를 변경하는 함수 
+        4. Reducer(리듀서) : 액션을 받아서 상태를 처리하는 함수
+
+    6. 핵심 함수 
+        redux : 리덕스 라이브러리 
+            import { Provider } from 'react-redux'
+            1. Provider :  리덕스 store 를 다른 컴포넌트들에게 공급하는 역할 
+                <Provider store={ store }>  여러 컴포넌트  </Provider >
+
+            import { Provider } from 'react-redux'
+            2. useDispatch : 리덕스에서 액션(함수) 을 보낼 때 dispatch 사용한다. 
+                dispatch( 함수명(인자값) ) , dispatch( 액션이름( action값 ) )
+
+            import { Provider } from 'react-redux'
+            3. useSelector : 리덕스에서 전역상태(state/값)를 조회/가져 올때 useSelector 사용한다.
+
+        redux-toolkit : 기존 리덕스의 전역상태를 설정하는 코드를 간결하게 해준다.
+
+            import { configureStore  } from '@reduxjs/toolkit'
+            1. configureStore( ) : 여러개의 리듀서 들을 저장하고 관리를 하기위한 객체 만들기 위한 설정 함수.
+                configureStore( { reducer : { 등록이름1 : 등록할리듀서1 , 등록이름2 : 등록할리듀서2  } } )
+
+            import { createSlice } from "@reduxjs/toolkit";
+            2. createSlice(  ) : 하나의 상태 또는 리듀서 를 만들기 위한 설정 함수.
+                createSlice( { name : 이름  , 초기값 , reducers : { 함수명 : ( state , action )=>{  } , 함수명 : ( state , action )=>{  }  }  } )

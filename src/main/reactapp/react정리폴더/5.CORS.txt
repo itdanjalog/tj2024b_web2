@@ -1,0 +1,32 @@
+[ CORS ] : Cross-Origin Resource Sharing 
+    1. 정의 : 서로 다른 도메인(HTTP주소:http://ip/port) 의 요청과 응답 허용하는 정책 
+    2. 목적 : 기본적으로 브라우저는 보안상의 이유로 CORS 차단한다. , 쿠키(세션)/인증 공유 불가능. Credentials = false
+        -> SOP( Same-Origin Policy ) : 동일한 도메인끼리만 통신하자
+    3. 적용사례
+        1.개발단계
+            1. 리액트 : localhost:5173~
+            2. 스프링 : localhost:8080~
+        2. 배포(운영) 단계 
+            방법1. 서버 2개를 그대로 운영한다.
+            방법2. 리액트를 결과들을 정적파일들을 스프링에서 (통합) 관리하여 운영
+
+    3. 서로 다른 도메인 간 CORS 허용 방법 
+        (스프링 방법1 : 스프링 설정 클래스 생성 )
+            @Configuration // 빈 등록 // 스프링 시작될때 해당 클래스를 읽어드린다.
+            public class CorsConfig implements WebMvcConfigurer {
+                // (1) implements WebMvcConfigurer : spring mvc 관련 설정값을 수정하는 인터페이스
+                // (2) CORS 관련 설정값 수정 , 오버라이딩(재정의) , addCorsMappings 메소드
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**") // 모든 스프링 컨트롤러의 HTTP주소 매핑 허용
+                            .allowedOrigins("http://localhost:5173" , "http://localhost:5174") // 허용할 출처(도메인)
+                            .allowedMethods("GET" ,"POST" , "PUT" , "DELETE") // 허용할 HTTP 메소드들
+                            .allowedHeaders("*") // HTTP 의 헤더(body)정보 허용
+                            .allowCredentials(true); // HTTP 의 쿠키(세션)/인증 허용 // 마지막에 ;(세미콜론) 마침
+                }
+            }
+    4. 리액트에서 서로 다른 서버(도메인:8080) 에게 요청 보내기
+        1. axios, fetch 주의할점 : 쿠키(세션) 유지 안된다.
+        2. 해결방안 : 쿠키(세션)/인증 를 사용하는 REST API 대해서 Credentials = true 허용한다.
+            - axios.XXX('' , { withCredentials : true } )
+            
