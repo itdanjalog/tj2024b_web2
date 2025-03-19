@@ -1,70 +1,46 @@
-import { useState } from "react";
+import { useState } from "react"
 import axios from 'axios'
-import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
-axios.defaults.withCredentials = true;
+import { useNavigate } from 'react-router-dom'
 
-import { useDispatch } from "react-redux";
-import { login } from "../userSlice";
+import { useDispatch } from 'react-redux'
+import { login } from '../reduxs/userSlice'
 
-export default function Login(props) {
+export default function Login( props ){
 
-     const navigate = useNavigate();
-     const dispatch = useDispatch();
+    // (*****************************) 리덕스 ( 전역변수 ) 사용하기. (*****************************)
+    // (1) 리덕스 사용하기 위한 useDispatch 함수 가져오기
+    const dispatch = useDispatch();
 
-  const [memberInfo, setMemberInfo] = useState({
-    mid: "",
-    mpwd: ""
-  });
+    // (1) 입력받은 값들을 저장하는 state 변수
+    const [ memberInfo , setMemberInfo ] = useState({ mid:'' , mpwd : ''} )
+    // (2) 입력받은 값들을 수정하는 state 수정 처리 함수
+    const onInputChange = ( event ) => { setMemberInfo( { ...memberInfo , [ event.target.name ] : event.target.value } ); }
 
-  // 로그인 제출 처리 함수
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // 여기에 로그인 처리 로직을 추가하면 됩니다.
-    console.log("로그인 시도:", memberInfo);
-    // 예를 들어, API 호출을 통해 서버에 로그인 정보를 전달할 수 있습니다.
+    // (3) 입력받은 값들을 axios 이용하여 자바(스프링) 에게 요청과 응답받기
+    const navigate = useNavigate();
+    const onLogin = async () => {
+        const response = await axios.post('http://localhost:8080/api/member/login' , memberInfo , { withCredentials : true } )
+        const result = response.data;
+        if( result == true ){
+            // (4) 로그인 성공할 경우 로그인 성공한 회원 정보를 가져오기.
+            const response2 = await axios.get('http://localhost:8080/api/member/info' , { withCredentials : true } )
+            alert('로그인성공');
+            navigate("/");
+            // (*****************************) 리덕스 ( 전역변수 ) 사용하기. (*****************************)
+            // (2) useDispatch 함수를 이용한 리듀서 함수 액션하기. // 로그인 액션(함수) 에 (로그인한)회원정보를 대입한다. // 전역변수 대입
+            dispatch( login( response2.data ) ); // useState(지역상태) 가 아닌 store(전역상태) 에 저장된다. response.data : payload
+        }
+        else{ alert('로그인실패'); }
+    } // f end
 
-      // 예시: axios를 사용하여 회원가입 API 호출
-    const response = await axios.post("http://localhost:8080/api/member/login", memberInfo  , { withCredentials: true })
-    if( response.data  ){
-        console.log("로그인 성공");
-        //location.href="/"
-        dispatch(login(response.data)); // Redux 상태 업데이트
-    }else{
-        console.log("로그인 에러");
-    }
+    console.log( memberInfo );
 
-  };
-
-  return (
-    <div>
-      <h1>로그인 페이지</h1>
-      <form >
-        <div>
-          <label htmlFor="email">이메일</label>
-          <input 
-            type="text"
-            id="email" 
-            value={memberInfo.mid}
-            name="mid"
-            onChange={(e) => setMemberInfo( { ...memberInfo , [e.target.name] : e.target.value } )}
-            placeholder="이메일을 입력하세요" 
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">비밀번호</label>
-          <input 
-            type="password" 
-            id="password" 
-            value={memberInfo.mpwd}
-            name="mpwd"
-            onChange={(e) => setMemberInfo( { ...memberInfo , [e.target.name] : e.target.value } )}
-            placeholder="비밀번호를 입력하세요" 
-            required
-          />
-        </div>
-        <button type="button" onClick={handleSubmit}>로그인</button>
-      </form>
-    </div>
-  );
+    return (<>
+        <h3> 로그인페이지 </h3>
+        <form>
+            아이디 : <input type="text" name="mid" value={ memberInfo.mid } onChange={ onInputChange }/> <br/>
+            비밀번호 : <input type="password" name="mpwd" value={ memberInfo.mpwd } onChange={ onInputChange } /> <br/>
+            <button type="button" onClick={ onLogin } > 로그인 </button>
+        </form>
+    </>)
 }

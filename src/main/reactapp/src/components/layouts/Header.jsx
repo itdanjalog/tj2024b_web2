@@ -1,69 +1,47 @@
-
-import axios from 'axios'
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../userSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../reduxs/userSlice';
 
 export default function Header( props ){
 
-    const [ loginInfo , setLoginInfo ] = useState({});
+    // (*****************************) 리덕스 ( 전역변수 ) 사용하기. (*****************************)
+    // (1) (전역상태)에서 로그인된 회원정보 불러오기, user 라는 이름의 리듀서 정보를 가져오기
+    const loginInfo = useSelector( ( state ) => state.user.userInfo  );
+    // (2) 로그아웃 하기 위한 useDispatch
+    const dispatch = useDispatch()
 
-    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-    const dispatch = useDispatch();
-
-    console.log("isAuthenticated 상태:", isAuthenticated); // 상태 확인
-
-
-    useEffect( ()=>{
-        myInfo();
-    },[])
-
-    const myInfo = async () =>{
-        const response =  await axios.get('http://localhost:8080/api/member/info' , { withCredentials: true } )
-        console.log( response.data );
-        setLoginInfo( response.data );
-    }
+    // (4) axios 이용하여 로그아웃 요청과 응답받기.
     const navigate = useNavigate();
+    const onLogout = async ( ) => {
+        const response = axios.get('http://localhost:8080/api/member/logout' , { withCredentials : true }  )
+        alert('로그아웃 했습니다.');
+        navigate('/');
+        dispatch( logout() )
+    } // f end
 
-    const onLogOut =  async()=>{
-        const response =  await axios.get('http://localhost:8080/api/member/logout' , { withCredentials: true })
-        if( response ){
-              console.log("dddd")
-              localStorage.removeItem('user');
-              //location.href="/";
-              dispatch(logout())
-        }else{
-             console.log("dddd2")
-        }
-
-    }
-
-    return (<><div>
-
-            {isAuthenticated ? (
-                <>
-                    <span>환영합니다!</span>
-                    <button onClick={ onLogOut }>로그아웃</button>
-                </>
-            ) : (
-                <Link to="/member/login">로그인</Link>
-            )}
-
-
-        {loginInfo ? (
-            <div>
-                <img src={'http://localhost:8080/upload/'+loginInfo.mimg} style={ { 'width' : '50px'  } }/>
-                <span>안녕하세요, {loginInfo.mid}님! </span>
-                <Link to="/member/info">마이페이지</Link>
-                <button type="button" onClick={ onLogOut }>로그아웃</button>
-            </div>
-
-        ) : (
-            <h2>로그인이 필요합니다. <Link to="/member/signup" >회원가입</Link> <Link to="/member/login">로그인</Link> </h2>
-        )}
-
-
-        </div></>)
+    // 로그인/로그아웃 했을때 재렌더링 필요하다. :
+    return (<>
+        <div>
+            <ul>
+                <li>
+                    {
+                        loginInfo ?
+                            (<>
+                                <div>  { loginInfo.mid } 님 안녕하세요.
+                                    <button onClick={ onLogout }> 로그아웃 </button>
+                                </div>
+                            </>)
+                            :
+                            (<><div> 비로그인중 </div></>)
+                    }
+                </li>
+                <li> <Link to="/"> 홈으로 </Link> </li>
+                <li> <Link to="/member/signup"> 회원가입 </Link> </li>
+                <li> <Link to="/member/login"> 로그인 </Link> </li>
+            </ul>
+        </div>
+    </>)
 }
