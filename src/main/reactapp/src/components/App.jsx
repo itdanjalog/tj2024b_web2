@@ -7,9 +7,13 @@ import Footer from './layouts/Footer'
 import Signup from './member/Signup'
 import Login from './member/Login'
 
-import { store, persistor } from "./store"; // store와 persistor 가져오기
+import Info from './member/Info'
+
+import { store, persistor } from "./reduxs/store"; // store와 persistor 가져오기
 import { Provider } from 'react-redux'
 import { PersistGate } from "redux-persist/integration/react"; // PersistGate 추가
+
+import ProtectedRoute from './member/ProtectedRoute'
 
 export default function App( props ){
     return (<>
@@ -22,6 +26,7 @@ export default function App( props ){
                             <Route path='/' element={ <Home/> }> </Route>
                             <Route path='/member/signup' element={ <Signup/> }> </Route>
                             <Route path='/member/login' element={ <Login/> }> </Route>
+                            <Route path="/member/info" element={<ProtectedRoute><Info /></ProtectedRoute>} />
                         </Routes>
                         <Footer /> { /* Routes 밖에 있는 컴포넌트들이 고정  */}
                     </div>

@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { BrowserRouter , Routes , Route , Link, useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 export default function Info( props ){
 
-  const [ loginInfo , setLoginInfo ] = useState({});
-
-  useEffect( ()=>{
-      myInfo();
-  },[])
-
-  const myInfo = async () =>{
-      const response =  await axios.get('http://localhost:8080/api/member/info' , { withCredentials: true } )
-      console.log( response.data );
-      setLoginInfo( response.data );
-  }
-
+    // (*****************************) 리덕스 ( 전역변수 ) 사용하기. (*****************************)
+    // (1) (전역상태)에서 로그인된 회원정보 불러오기, user 라는 이름의 리듀서 정보를 가져오기
+    const loginInfo = useSelector( ( state ) => state.user.userInfo  );
 
   return (
     <div>

@@ -14,8 +14,16 @@ public interface MemberMapper {
     public boolean sigunUp( MemberDto memberDto );
 
     // [2] 로그인 -> 입력받은 자료를 확인/검증 -> SELECT
-    @Select("select mno , mid , mname , mimg from member where mid = #{ mid } and mpwd = #{ mpwd }")
-    //  boolean login( MemberDto memberDto );       // boolean : select 결과가 있으면 true , 없으면 null 이라서 오류 발생할수 있다. // 예외처리
-    public MemberDto login( MemberDto memberDto );  // MemberDto : select 결과가 있으면 memberDto , 없으면 null
+//    @Select("select mno , mid , mname , mimg from member where mid = #{ mid } and mpwd = #{ mpwd }")
+//    //  boolean login( MemberDto memberDto );       // boolean : select 결과가 있으면 true , 없으면 null 이라서 오류 발생할수 있다. // 예외처리
+//    public MemberDto login( MemberDto memberDto );  // MemberDto : select 결과가 있으면 memberDto , 없으면 null
+
+    // [2] 아이디 로 비밀번호 조회
+    @Select("select mpwd from member where mid = #{mid}")
+    public String findMpwd( String mid );
+
+    // [2]
+    @Select("select mno , mid , mname , mimg from member where mid = #{ mid }")
+    public MemberDto login( String mid );
 
 }
