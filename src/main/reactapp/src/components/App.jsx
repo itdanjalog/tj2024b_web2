@@ -8,7 +8,7 @@ import Signup from './member/Signup'
 import Login from './member/Login'
 import store from './reduxs/store'
 
-import { Provider } from '@reduxjs/toolkit'
+import { Provider } from 'react-redux'
  
 export default function App( props ){
     return (<>
