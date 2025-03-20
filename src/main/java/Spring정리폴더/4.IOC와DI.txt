@@ -4,7 +4,7 @@
     즉] 객체의 생성과 관리를 스프링이 한다.
     3. 컨테이너 등록하는 방법 : 클래스 위에 빈 등록 어노테이션 사용한다.
         @Component
-        @Controller @RestController @Service @Repository @Mapper 등등 : 다른 기능들과 포함하여 제공한다.
+        @Controller @RestController @Service @Repository @Mapper @Configuration 등등 : 다른 기능들과 포함하여 제공한다.
 [ DI ] : (Dependency Injection) 의존성 주입
     1. 객체를 직접 생성하지 않고 외부(스프링 컨테이너)로 부터 주입받도록 하는 방법
     2. 객체들간의 결합도를 낮추고 유지보수성를 향상한다.
