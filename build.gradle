@@ -37,8 +37,8 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
     // [5] 사용자 정의 AOP 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-aop'
-    // [6]
-    implementation 'org.springframework.security:spring-security-crypto:5.8.0' // 최신 버전 확인 후 사용
+    // [6] 비크립트 알고리즘 라이브러리
+    implementation 'org.springframework.security:spring-security-crypto:6.4.3'
 }
 
 tasks.named('test') {

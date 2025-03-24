@@ -9,7 +9,8 @@
     2. localStorage/sessionStorage : 브라우저 저장소
         - localStorage : 브라우저 꺼져도 사라지지 않는다.
         - sessionStorage : 브라우저가 꺼지면 사라진다.
-    등등 
+    
+    3. 페이지전환 시 매개변수 전달 : 1. queryString 2. pathvariable
 
 * 컴포넌트 안에서 자료 저장하는 방법 
     1. useState : ( 지역 상태 관리 ) 컴포넌트 내부 사용하므로 다른 컴포넌트간의 공유할때는 props 활용한다.
@@ -57,3 +58,8 @@
             import { createSlice } from "@reduxjs/toolkit";
             2. createSlice(  ) : 하나의 상태 또는 리듀서 를 만들기 위한 설정 함수.
                 createSlice( { name : 이름  , 초기값 , reducers : { 함수명 : ( state , action )=>{  } , 함수명 : ( state , action )=>{  }  }  } )
+
+    7. 리덕스 상태도 새로고침(F5) 사라진다.
+        해결방안 : 리덕스 퍼시스턴스 사용하여 localStorage 에 상태 유지한다.
+        1. 설치 : npm install redux-persist
+        2. store.jax

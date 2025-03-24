@@ -1,0 +1,67 @@
+[ 암호화 ]
+    1. 정의 : 자료를 보호 하기위해서 사람이 이해하기 어려운 문자로 변환
+    2. 목적
+        1. 자료 보안 : 해킹으로 부터 자료 보호
+        2. 자료 무결성 유지
+        등등
+    3. 사용처
+        1. HTTPS - 메시지 (HTTP) 암호화
+        2. 계정 비밀번호 - 암호화
+        3. 금융 거래 - 암호화
+        등등
+    4. 용어
+        1. 암호화 : 자료를 변환하는 과정 ( 사람이 이해하기 어려운 문자로 )
+        2. 복호화 : 암호화된 자료를 원래 상태로 변환하는 과정
+        3. 단방향 암호화 : 원래 상태로 변환할수 없는 암호화 방식
+        4. 양방향 암호화 : 원래 상태로 변환할수 있는 암호화 방식
+        5. 해시 함수 : 데이터를 고정된 길이로 변환하는 함수
+        6. 솔트 : 암호화할때 사용되는 랜덤값
+        7. 레인보우 테이블 : 미리 계산된 해시값을 이용하여 복호화를 찾는 기법
+
+    5. 실무 암호화 알고리즘
+        1. 비밀번호 : Bcrypt 알고리즘 등
+        2. 파일 검증 : SHA-256 알고리즘 등
+        3. HTTP : TLS 알고리즘 등
+        4. 전자 서명 : SHA-256 알고리즘 등
+
+    6. 비크립트( Bcrypt )
+        1. 정의 : 해시 함수를 이용하여 주로 비밀번호를 암호화 할때 사용된다.
+        2. 특징 :
+            1. 솔트(salt) : 같은 비밀번호를 랜덤(salt)값 으로 서로 다른 암호화된 문자를 만들수 있다.
+                (자료)abc (salt)1234 -> a154b8734~
+                (자료)abc (salt)4567 -> a354q5431~
+            2. 반복 연산 적용 : 해독 하는 속도 늦춤
+            3. 원본 복구 불가능( 단방향 암호화 ) : (로그인) 비밀번호 검증은 자료 비교가 아닌 해시값 비교한다.
+
+        4. 비크립트 해시 결과
+            예시] $2a$10$x2EThyWgObtqbUoWWFm6Zuly3oCTMHBrcpZ0EnwF/ykfMDRvycwgO
+                1. $2a$ : 비크립트 버전
+                2. $10$ : 연산 반복 , 2 제곱근
+                3. x2EThyWgObtqbUoWWFm6Zul : salt(22글자)
+                4. ly3oCTMHBrcpZ0EnwF/ykfMDRvycwgO : 해시값(31글자)
+                최대 60글자
+
+        5. 스프링 에서 비크립트 사용하는 방법
+            1. 그레이들에서 비크립트 라이브러리 추가
+                implementation 'org.springframework.security:spring-security-crypto:6.4.3'
+            2. 암호화
+                1. BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder( );
+                2. String result = passwordEncoder.encode( 암호화할자료 );
+
+            3. 검증 (복호화는 불가능)
+                1. BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder( );
+                2. boolean result = passwordEncoder.matches( 비교할자료rawPassword , 암호화된자료encodedPassword );
+                    -> 일치하면 true , 일치하지 않으면 false
+
+
+
+
+
+
+
+
+
+
+
+
+
