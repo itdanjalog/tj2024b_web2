@@ -1,0 +1,24 @@
+[스케줄링 문제] 자동 재고 관리 시스템 , 스프링스케줄링 + 마이바티스
+    [ 조건 ]
+        1. 매 30초마다 모든 제품의 재고는 3개씩 감소한다.
+        2. 매 1분마다 모든 제품 정보를 조회하여 console 출력한다.
+        3. 매 5분마다 재고가 10 이하인 상품의 재고를 +20개 추가한다.
+        -> 최소 클래스 파일수 : AppStart , TaskService , TaskMapper
+    [ 샘플DB ]
+        -- schema.sql 추가
+        DROP TABLE IF EXISTS day11products
+        CREATE TABLE day11products (
+            product_id INT PRIMARY KEY AUTO_INCREMENT, -- 상품 ID (자동 증가)
+            product_name VARCHAR(255) NOT NULL,        -- 상품명
+            stock_quantity INT NOT NULL                -- 재고 수량
+        );
+        -- data.sql 추가
+        INSERT INTO day11products (product_name, stock_quantity) VALUES
+        ('무선 이어폰', 25),
+        ('스마트워치', 12),
+        ('게이밍 키보드', 30),
+        ('기계식 마우스', 8),
+        ('휴대용 충전기', 15);
+
+[ 제출 ] 카톡방 git 링크 제출
+
