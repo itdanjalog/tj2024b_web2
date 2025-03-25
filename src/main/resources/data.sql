@@ -6,6 +6,14 @@ INSERT INTO member (mid, mpwd, mname) VALUES
 ('user3', 'abcde789', '박민준'),
 ('user4', 'helloWorld', '정다은'),
 ('user5', 'son1234', '손흥민');
+-- ---------------------- day11 ---------------------------------- --
+INSERT INTO day11products (product_name, stock_quantity) VALUES
+('무선 이어폰', 25),
+('스마트워치', 12),
+('게이밍 키보드', 30),
+('기계식 마우스', 8),
+('휴대용 충전기', 15);
+
 
 -- ---------------------- day08 ---------------------------------- --
 insert into productsample( name , price , comment ) values ( '코카콜라' , 1000 , '맛있는 코카콜라' );

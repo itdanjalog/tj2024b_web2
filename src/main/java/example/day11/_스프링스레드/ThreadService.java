@@ -3,42 +3,38 @@ package example.day11._스프링스레드;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
+import java.util.UUID;
 
-@Service
+@Service // 스프링MVC 에서 Service
 public class ThreadService {
-    @Async // 별도 스레드에서 실행됨
-    public void playBeepSound( String uuid ) {
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(uuid  + " : 비프음!  - " + i);
-            try {
-                Thread.sleep(1000); // 1초 대기
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    // (1) 비동기 , +스레드풀 자동 적용
+    @Async // [2] 멀티스레드를 적용할 메소드 위에 @Async
+    public void thread1(){
+        String name = UUID.randomUUID().toString() ; // 구분용
+        for( int i = 1; i<=10 ; i++ ){
+            System.out.println( i+" 작업스레드 : "+name);
+            try{ Thread.sleep(1000); }
+            catch (Exception e){ System.out.println(e);}
         }
     }
-    @Async // 별도 스레드에서 실행됨
-    public synchronized void playBeepSound2( String uuid ) {
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(uuid  + " : 비프음!  - " + i);
-            try {
-                Thread.sleep(1000); // 1초 대기
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Async("beepExecutor") // 위에서 설정한 스레드풀 사용
-    public void playBeepSound3(String uuid  ){
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(uuid  + " : 비프음!  - " + i);
-            try {
-                Thread.sleep(1000); // 1초 대기
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    // (2) 동기 , synchronized  , +스레드풀 자동 적용
+    @Async
+    public synchronized void thread2(){
+        //위 예시 코드 복사
+        String name = UUID.randomUUID().toString() ;
+        for( int i = 1; i<=10 ; i++ ){
+            System.out.println( i+" 작업스레드 : "+name);
+            try{ Thread.sleep(1000); }
+            catch (Exception e){ System.out.println(e);}
         }
     }
 }
+
+
+
+
+
+
+
+
+
