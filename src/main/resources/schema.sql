@@ -1,6 +1,8 @@
 
 -- ---------------------- web ---------------------------------- --
+DROP TABLE IF EXISTS point;
 DROP TABLE if EXISTS member;
+
 CREATE TABLE member (
     mno   INT UNSIGNED AUTO_INCREMENT,  -- 회원 번호 (기본키)
     mid   VARCHAR(50) NOT NULL UNIQUE,     -- 회원 아이디
@@ -9,6 +11,16 @@ CREATE TABLE member (
     mimg  VARCHAR(255) DEFAULT NULL,        -- 프로필 이미지 URL
     CONSTRAINT PRIMARY KEY(mno)
 );
+
+CREATE TABLE point (
+    pno     INT UNSIGNED AUTO_INCREMENT,  -- 포인트 번호 (기본키)
+    mno     INT UNSIGNED NOT NULL,         -- 회원 번호 (외래키)
+    amount  INT NOT NULL DEFAULT 0,        -- 지급된 포인트
+    pdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 지급 시간
+    CONSTRAINT PRIMARY KEY(pno),
+    CONSTRAINT FK_point_member FOREIGN KEY(mno) REFERENCES member(mno) ON DELETE CASCADE
+);
+
 -- ---------------------- day11 ---------------------------------- --
 DROP TABLE IF EXISTS day11products;
 CREATE TABLE day11products (

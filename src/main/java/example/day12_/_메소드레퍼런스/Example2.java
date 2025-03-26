@@ -1,4 +1,4 @@
-package example.day12._메소드레퍼런스;
+package example.day12_._메소드레퍼런스;
 
 import lombok.ToString;
 

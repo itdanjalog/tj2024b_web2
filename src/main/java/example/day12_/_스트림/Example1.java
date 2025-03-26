@@ -1,4 +1,4 @@
-package example.day12._스트림;
+package example.day12_._스트림;
 
 import java.util.Arrays;
 import java.util.List;
