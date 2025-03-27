@@ -9,6 +9,12 @@ CREATE TABLE member (
     mimg  VARCHAR(255) DEFAULT NULL,        -- 프로필 이미지 URL
     CONSTRAINT PRIMARY KEY(mno)
 );
+-- ---------------------- day13 ---------------------------------- --
+DROP TABLE if EXISTS day13users;
+CREATE TABLE day13users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
 -- ---------------------- day11 ---------------------------------- --
 DROP TABLE IF EXISTS day11products;
 CREATE TABLE day11products (
