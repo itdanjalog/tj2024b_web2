@@ -5,6 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -54,8 +55,8 @@ public class TranService {
 
     // (3) 매일9시(스케줄링) 에 모든 회원들에게 100원씩 입금 , +트랜잭션, +스트림, +메소드레퍼런스
     // 1. 매일9시 스케줄링 , @Scheduled( cron = " 초 분 시 일 월 요일") , AppStart 에서 @EnableScheduling 적용
-    //@Scheduled( cron = " 0 0 9 * * *")
-    @Scheduled( cron = " 0 */1 * * * *") // 확인용  : 1분마다
+    @Scheduled( cron = " 0 0 9 * * *")
+    // @Scheduled( cron = " 0 */1 * * * *") // 확인용  : 1분마다
     // 2. 해당 하는 메소드에서 예외가 발생하면 모든 sql은 취소/롤백 된다.
     @Transactional( rollbackFor = Exception.class )
     public void Task() throws Exception { // throws Exception : 예외 발생시 롤백 적용한다.
@@ -63,12 +64,25 @@ public class TranService {
         // 2. 모든 회원 들에게 100원씩 입금
         tranMapper.findAll() // 모든 회원 목록 조회
                 .stream() // 조회 결과 스트림 생성
+                //.filter( name -> !name.equals("유재석") )
                 // 스트림의 각 데이터(이름)으로 입금 처리
-                .forEach( name -> tranMapper.deposit( name , 100 ) );
-
+                //방법1 : //.forEach( name -> tranMapper.deposit( name , 100 ) );
+                //방법2
+                .forEach( this::depositAll ); // this는 현재 스트림에서 각 데이터(이름)객체 뜻
         System.out.println(">>>> 모든 회원들에게 이벤트 100원 입금 처리 완료 >>>>");
+            //  스트림/람다식/레퍼런스 적용 vs 일반적인 방법
+        List<String > names = tranMapper.findAll(); // 1. 모든 회원 조회
+        for( int i = 0 ; i < names.size() ; i++ ){
+            String name = names.get(i); // 2. 반복문 이용하여 이름을 하나씩 조회한다.
+            // if( name.equals("유재석") ) continue; // 조건 추가
+            tranMapper.deposit( name , 100 );// 3. 이름 하나씩 입금 한다.
+        } //
     }
 
+    // 3. 메소드 레퍼런스(미리 만들어진 메소드) 적용 , 람다식 를 간결하게
+    private void depositAll( String name ){
+        tranMapper.deposit( name , 100 );
+    }
 
 
 } // class end
