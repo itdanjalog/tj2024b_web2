@@ -38,7 +38,7 @@ public class TranService {
         // 예외처리방법2 : throws 예외클래스명{}
 
         // - 유효성검사 :  보내는사람/받는사람 존재여부, 이체할 금액 확인
-        // 유효성검사 실패시 false 아닌 강제 예외발생
+        // 유효성검사 실패시 false 아닌 강제 예외발생 만들기
 
         // 1. 보내는 사람(fromname)의 금액(money)을 차감(출금)
         String fromName = params.get("fromname");
