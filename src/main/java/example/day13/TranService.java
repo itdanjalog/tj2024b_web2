@@ -14,7 +14,7 @@ public class TranService {
     public boolean tran(){
         // (1) 첫번째 insert
         tranMapper.tran("유재석");
-        // 학습용 : 여기에 고의적으로 문제(예외) 발생 해서 아래 insert를 못하게
+        // 학습용 : 여기에 고의적으로 문제(예외) 발생 해서 아래 insert를 못하게 한다.
         if( true ) {
             throw new RuntimeException("강제로 실행예외 발생"); // 예외 발생하면 아래 코드가 실행되지 않는다.
             // (3) 만약에 두개 insert 하는 도중에 첫번째 insert 이후 문제가 발생하면 두번째 insert는 실행 불가.
