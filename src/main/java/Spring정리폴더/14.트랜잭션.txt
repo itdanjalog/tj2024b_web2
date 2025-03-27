@@ -27,6 +27,9 @@
         -> 비지니스로직( 서비스 컨트롤러 : 기능의 실질/중요 적인 코드 )
         1. 트랜잭션 은 주로 비지니스 로직에서 처리한다.
         2. 비지니스 로직에서 트랜잭션을 적용할 메소드 위에 '@Transactional' 넣어준다.
+            - @Transactional 롤백 발동 조건은 'RuntimeException'
+            - @Transactional( rollbackFor = Exception.class )  롤백 발동 조건은 모든 예외클래스
+
 
 
 

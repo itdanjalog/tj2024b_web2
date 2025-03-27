@@ -6,6 +6,11 @@ INSERT INTO member (mid, mpwd, mname) VALUES
 ('user3', 'abcde789', '박민준'),
 ('user4', 'helloWorld', '정다은'),
 ('user5', 'son1234', '손흥민');
+-- ---------------------- day13 ---------------------------------- --
+INSERT INTO day13users (name, money) VALUES
+('서장훈', 500000),
+('신동엽', 300000);
+
 -- ---------------------- day11 ---------------------------------- --
 INSERT INTO day11products (product_name, stock_quantity) VALUES
 ('무선 이어폰', 25),

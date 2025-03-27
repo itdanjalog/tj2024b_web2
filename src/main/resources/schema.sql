@@ -13,7 +13,8 @@ CREATE TABLE member (
 DROP TABLE if EXISTS day13users;
 CREATE TABLE day13users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    money INT UNSIGNED DEFAULT 0
 );
 -- ---------------------- day11 ---------------------------------- --
 DROP TABLE IF EXISTS day11products;
